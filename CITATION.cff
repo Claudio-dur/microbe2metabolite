@@ -6,6 +6,7 @@ authors:
     given-names: "Claudio"
 version: 0.1.0
 license: MIT
+repository-code: "https://github.com/Claudio-dur/microbe2metabolite"
 keywords:
   - microbiome
   - metabolomics

@@ -166,8 +166,9 @@ the architecture and tokenisation.
   centred on the fit rows so that tiny training sets do not stop at initialisation.
 - **Two phases, enforced in code.** `make select` never opens NLIBD through the guarded loaders
   (the D2 Franzosa tables it reads also hold NLIBD's 65 rows, which are dropped on loading) and
-  ends by hashing every selection and config. That freeze was committed (commit `ce8fb15`) before
-  `make evaluate` ran. Every opening of the external cohort for modelling refuses unless the
+  ends by hashing every selection and config. That freeze was committed (commit `f1d7f3c`, which
+  the logs record by its original ID `ce8fb15`; see [docs/provenance.md](docs/provenance.md))
+  before `make evaluate` ran. Every opening of the external cohort for modelling refuses unless the
   frozen state is committed and unchanged (only the section-3 data checks, which fit nothing, are
   exempt), and every opening is logged with its purpose
   ([results/external_access_log.csv](results/external_access_log.csv)).
@@ -270,6 +271,7 @@ quoted the preprint's 0.294 / 0.642 / 93; the journal version supersedes them.
 A fresh clone needs uv, git, make, bash and network access.
 
 ```bash
+git clone https://github.com/Claudio-dur/microbe2metabolite.git && cd microbe2metabolite
 make all      # env, data (download + 49 checks), MGM env, select, evaluate, EDA notebook
 ```
 
@@ -303,8 +305,12 @@ session.
   cohort, and the freeze's git check, are skipped in dry runs.
 - **History:** the milestone commits M1–M5 (branches m1-data to m5-curves) were cut from the
   finished code just before the real `make select` run, and their commit messages say so.
-  m5-curves also holds the freeze commit (`ce8fb15`); m6-readme holds the evaluation and this
+  m5-curves also holds the freeze commit (`f1d7f3c`); m6-readme holds the evaluation and this
   write-up.
+- **Commit IDs:** before publication, the history was rewritten to change only the author
+  identity, so the results files record the original commit IDs.
+  [docs/provenance.md](docs/provenance.md) maps them to the published ones; the trees are
+  identical.
 
 ## References
 
