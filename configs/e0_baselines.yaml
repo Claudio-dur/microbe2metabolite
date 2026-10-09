@@ -1,0 +1,39 @@
+# E0: baselines on D1 and the permutation null (brief sections 5-6; src/m2m/experiments/baselines.py).
+#   .venv/bin/python -m m2m.run configs/e0_baselines.yaml [--stage null|cv|external|curve]
+# Stages run in that order: every external score reports N(ρ above the null threshold), so the
+# null comes first. Preprocessing, folds, metrics and the null settings are base.yaml's.
+extends: base.yaml
+experiment: e0
+
+cv_seed: 0                    # model seed of every CV fit (cv.seed in base.yaml fixes the folds)
+
+baselines:                    # summary.csv model names: mean, ridge, enet, rf
+  mean:                       # DummyRegressor(strategy="mean"): constant predictions, every ρ is
+    target_sets: [T466, TALL] # NaN and counts as 0 (the floor)
+    external_seeds: [0]       # deterministic: one fit
+  ridge:                      # hyperparameters: base.yaml `ridge` (shared with E5 and ablations)
+    target_sets: [T466, TALL]
+    external_seeds: [0]       # GCV ridge is deterministic
+  enet:                       # one ElasticNetCV per metabolite, similar to MelonnPan
+    target_sets: [T466]
+    external_seeds: [0]       # deterministic given its fixed inner folds
+    params:
+      # MelonnPan (Mallick et al. 2019, R/melonnpan_train.R) fits glmnet per metabolite with the
+      # mixing grid seq(0.05, 0.95, 0.05), 10 inner folds shared by all metabolites, 100 lambdas
+      # and the 1-SE rule. Here: 6 of its 19 mixing values (same range), 5 inner folds and
+      # ElasticNetCV's CV-minimum rule (it has no 1-SE rule). The full 19 x 10 grid costs ~7x
+      # more CPU (~6 s instead of ~0.9 s per metabolite and fit on a PRISM training fold).
+      l1_ratio: [0.05, 0.1, 0.25, 0.5, 0.75, 0.95]
+      n_alphas: 100           # path length, passed as ElasticNetCV(alphas=100) (sklearn 1.9)
+      eps: 1.0e-2             # alpha_min / alpha_max: glmnet's default when n < p (124 rows, 151 taxa)
+      inner_folds: 5
+      inner_seed: 0           # KFold(shuffle=True) seed: the same inner folds for every metabolite
+      max_iter: 10000         # no convergence warnings at this value on PRISM
+      tol: 1.0e-4
+  rf:                         # multi-output random forest (one forest predicts every metabolite)
+    target_sets: [T466]
+    # external_seeds omitted: every model seed of base.yaml (bootstrap and split draws vary)
+    params:
+      n_estimators: 500       # R randomForest's default ntree
+      max_features: 0.333     # p/3 taxa tried per split: R randomForest's regression mtry
+      min_samples_leaf: 5     # R randomForest's regression nodesize
