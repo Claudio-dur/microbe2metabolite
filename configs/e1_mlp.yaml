@@ -1,0 +1,10 @@
+# E1: MLP trained from scratch on D1 (brief section 6; src/m2m/experiments/mlp.py).
+#   .venv/bin/python -m m2m.run configs/e1_mlp.yaml [--stage select|external|curve]
+# Architecture, grid and training settings are base.yaml's `mlp` section, shared with the
+# ablations and E5, so every MLP in the project is the same model. Needs the E0 null stage
+# (null thresholds) before the external and curve stages.
+extends: base.yaml
+experiment: e1
+
+cv_seed: 0   # model seed of every CV fit: the grid is compared at this one seed; the selected
+             # configuration is then refit with every seed of `seeds` for the external evaluation
