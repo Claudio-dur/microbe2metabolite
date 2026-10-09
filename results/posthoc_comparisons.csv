@@ -1,0 +1,5 @@
+model_a,model_b,target_set,question,analysis,delta,ci_low,ci_high,ci_low_percentile,ci_high_percentile,boot_sd,p_not_better
+mgm_frozen_ridge,ridge,T466,Frozen MGM + ridge vs ridge on the D1 species,post-hoc (not pre-registered),0.037674476013944136,-0.0010539356948441186,0.07750590934687844,-0.002156957318990171,0.07640288772273239,0.01988335088930159,0.03
+mgm_frozen_ridge,ridge,TALL,Frozen MGM + ridge vs ridge on the D1 species,post-hoc (not pre-registered),0.008316340080201046,-0.019415803619060167,0.03303266669609767,-0.01639998653569558,0.03604848377946226,0.013256252595857285,0.272
+d2_ridge,ridge,T466,"Same ridge, D2 GTDB genera vs D1 MetaPhlAn2 species",post-hoc (not pre-registered),0.10527627321837019,0.06922381180340675,0.14063387508057656,0.06991867135616382,0.14132873463333362,0.018380524010051306,0.0
+e4c_scratch,mlp,T466,"Same MLP from scratch, D2 GTDB genera vs D1 species",post-hoc (not pre-registered),0.09682912916285774,0.06255549134945931,0.13177035871053544,0.061887899615180056,0.13110276697625617,0.017349453331623212,0.0

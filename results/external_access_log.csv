@@ -13,3 +13,25 @@ timestamp,purpose,detail,git_sha
 2026-10-08T20:37:09Z,section-3 data checks (no modelling),D2 Franzosa Validation,
 2026-10-09T10:04:03Z,section-3 data checks (no modelling),D1 NLIBD,
 2026-10-09T10:04:04Z,section-3 data checks (no modelling),D2 Franzosa Validation,
+2026-10-09T10:30:32Z,"permutation null: ridge refit on shuffled PRISM, scored on NLIBD (T466)",D1 NLIBD,ce8fb15
+2026-10-09T10:30:34Z,"permutation null: ridge refit on shuffled PRISM, scored on NLIBD (TALL)",D1 NLIBD,ce8fb15
+2026-10-09T10:30:40Z,"E0 final evaluation (mean, ridge, enet, rf): fit on PRISM, scored on NLIBD (T466)",D1 NLIBD,ce8fb15
+2026-10-09T10:31:51Z,"E0 final evaluation (mean, ridge): fit on PRISM, scored on NLIBD (TALL)",D1 NLIBD,ce8fb15
+2026-10-09T10:32:04Z,"E0 learning curve: ridge refit on PRISM subsets, scored on NLIBD (T466)",D1 NLIBD,ce8fb15
+2026-10-09T10:32:07Z,"E1 final evaluation: selected MLP {'dropout': 0.5, 'lr': 0.0003, 'weight_decay': 0.01} refit on PRISM, scored on NLIBD (T466)",D1 NLIBD,ce8fb15
+2026-10-09T10:32:11Z,"E1 final evaluation: selected MLP {'dropout': 0.2, 'lr': 0.0003, 'weight_decay': 0.01} refit on PRISM, scored on NLIBD (TALL)",D1 NLIBD,ce8fb15
+2026-10-09T10:32:33Z,"E1 learning curve: selected MLP refit on PRISM subsets, scored on NLIBD (T466)",D1 NLIBD,ce8fb15
+2026-10-09T10:32:38Z,MGM tokenisation/embedding of NLIBD inputs (transform only; nothing is fitted),D1 NLIBD (microbiome only),ce8fb15
+2026-10-09T10:32:43Z,E2 final evaluation: frozen-MGM ridge and MLP heads and their random-weight controls (configurations selected by PRISM CV),D1 NLIBD,ce8fb15
+2026-10-09T10:34:04Z,E5 learning curve of the frozen-MGM head selected by PRISM CV (E2 curve stage),D1 NLIBD,ce8fb15
+2026-10-09T10:34:08Z,"E3 mgm_finetune/mgm_scratch prepare-final: read the external cohort's MGM token ids (inputs only, no metabolites) to write the final-round tasks of the configurations saved by PRISM CV",NLIBD_tokens.npz (token ids),ce8fb15
+2026-10-09T10:34:11Z,E3 run-final: envs/mgm trains the selected configurations on PRISM and predicts the external cohort from its MGM token ids (inputs only),final-round task files (token ids only),ce8fb15
+2026-10-09T10:38:42Z,E3 evaluate: score the CV-selected configurations of mgm_finetune and of its from-scratch control mgm_scratch (5 seeds per target set) and their T466 learning curves,D1 NLIBD,ce8fb15
+2026-10-09T10:39:29Z,"e4 null: D2 ridge permutation null (T466, S176)",D2 Franzosa Validation,ce8fb15
+2026-10-09T10:40:01Z,e4 external: final evaluation of the selected E4c variants and d2_ridge,D2 Franzosa Validation,ce8fb15
+2026-10-09T10:40:49Z,e4 curve: E5 learning curve of e4c_scratch and e4c_ihmp (T466),D2 Franzosa Validation,ce8fb15
+2026-10-09T10:41:15Z,"ablation A1_input_transform=log: ridge, mlp refit on PRISM with this arm's preprocessing, scored on NLIBD (T466)",D1 NLIBD,ce8fb15
+2026-10-09T10:41:20Z,"ablation A2_target_transform=clr: ridge, mlp refit on PRISM with this arm's preprocessing, scored on NLIBD (T466)",D1 NLIBD,ce8fb15
+2026-10-09T10:41:27Z,"ablation A3_prevalence=0.05: ridge, mlp refit on PRISM with this arm's preprocessing, scored on NLIBD (T466)",D1 NLIBD,ce8fb15
+2026-10-09T10:41:30Z,"ablation A3_prevalence=0.20: ridge, mlp refit on PRISM with this arm's preprocessing, scored on NLIBD (T466)",D1 NLIBD,ce8fb15
+2026-10-09T10:41:32Z,"ablation A4_published_protocol=clr_x_plus_1: ridge, mlp refit on PRISM with this arm's preprocessing, scored on NLIBD (T466_from_all)",D1 NLIBD,ce8fb15

@@ -66,7 +66,8 @@ src/m2m/
     interpret.py    E6
     ablations.py    A1–A4
 scripts/
-  download_data.sh, check_data.py, setup_mgm_env.sh, mgm_embed.py, mgm_finetune.py, report_tables.py
+  download_data.sh, check_data.py, setup_mgm_env.sh, mgm_embed.py, mgm_finetune.py, report_tables.py,
+  posthoc_comparisons.py (exploratory, after the external results; reads saved predictions only)
 ```
 
 `m2m/__init__.py`, `models.py` and `train.py` import nothing beyond `torch`/`numpy`/stdlib at module
@@ -193,7 +194,8 @@ or in the other dry-run mode. External targets never enter a task file.
 | `results/interpretation/*.csv` | E6 | top metabolites, permutation importance, ρ by chemical class |
 | `results/external_access_log.csv` | data loaders, E2/E3 token reads | every time the external cohort was opened, and why |
 | `results/selected/FROZEN.json` | `m2m.freeze write` | hashes of every selection artefact and config at the freeze |
-| `results/paired_comparisons.csv` | compare | Δ mean ρ (A − B) with a paired-bootstrap CI and P(Δ ≤ 0) per pair |
+| `results/paired_comparisons.csv` | compare | Δ mean ρ (A − B) with a paired-bootstrap CI and P(Δ ≤ 0) per pre-registered pair |
+| `results/posthoc_comparisons.csv` | scripts/posthoc_comparisons.py | the same test for pairs chosen after seeing the external results (labelled post-hoc) |
 | `data/processed/external/*.npz` (not committed) | external evaluations | truth and per-seed predictions on the external cohort |
 | `results/figures/*.png`, `results/tables.md` | figures, report | figures and the README's tables |
 
