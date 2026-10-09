@@ -1,0 +1,21 @@
+# Data is downloaded by scripts/download_data.sh and never committed.
+data/
+mlruns/
+*.pt
+.venv*
+envs/mgm/.venv
+
+# Python tooling
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+build/
+dist/
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
