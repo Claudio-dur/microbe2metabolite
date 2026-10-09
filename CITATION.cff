@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below, together with the datasets and models it builds on."
+title: "microbe2metabolite: predicting gut metabolomes from metagenomes with transfer learning"
+authors:
+  - family-names: "Durán"
+    given-names: "Claudio"
+version: 0.1.0
+license: MIT
+keywords:
+  - microbiome
+  - metabolomics
+  - pytorch
+  - transfer-learning
+  - foundation-models
+references:
+  - type: article
+    title: "Gut microbiome structure and metabolic activity in inflammatory bowel disease"
+    authors:
+      - family-names: "Franzosa"
+        given-names: "Eric A."
+    journal: "Nature Microbiology"
+    year: 2019
+    doi: "10.1038/s41564-018-0306-4"
+  - type: article
+    title: "MiMeNet: exploring microbiome-metabolome relationships using neural networks"
+    authors:
+      - family-names: "Reiman"
+        given-names: "Derek"
+    journal: "PLOS Computational Biology"
+    year: 2021
+  - type: article
+    title: "The gut microbiome-metabolome dataset collection: a curated resource for integrative meta-analysis"
+    authors:
+      - family-names: "Muller"
+        given-names: "Efrat"
+    journal: "npj Biofilms and Microbiomes"
+    year: 2022
+    doi: "10.1038/s41522-022-00345-5"
+  - type: article
+    title: "MGM as a large-scale pretrained foundation model for microbiome analyses in diverse contexts"
+    authors:
+      - family-names: "Zhang"
+        given-names: "Haohong"
+    journal: "Advanced Science"
+    doi: "10.1002/advs.202513333"

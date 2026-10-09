@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "microbe2metabolite"
+version = "0.1.0"
+description = "Predicting gut metabolomes from metagenomes, with and without pretraining (PyTorch)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Claudio Durán" }]
+# Exact pins: results in results/ were produced with these versions (Python 3.11, macOS arm64, CPU).
+dependencies = [
+  "torch==2.14.1",
+  "scikit-learn==1.9.1",
+  "pandas==3.0.6",
+  "numpy==2.4.6",
+  "scipy==1.17.1",
+  "mlflow==3.17.0",
+  "pyyaml==6.0.3",
+  "matplotlib==3.11.2",
+  "joblib==1.6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==9.1.1",
+  "ruff==0.16.10",
+  "nbformat==5.11.1",
+  "nbconvert==7.17.1",
+  "ipykernel==7.4.0",
+  "jupyter-client==8.10.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src"]
+extend-exclude = ["data", "envs", "mlruns"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "NPY"]
+
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning:mlflow.*"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["m2m"]

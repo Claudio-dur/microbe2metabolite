@@ -1,0 +1,239 @@
+# Expected values of the data facts in section 3 of the project brief (checked 2026-10-08).
+#
+# `python scripts/check_data.py` (m2m.data.check_section3_facts) observes every fact below on the
+# downloaded data and fails if any of them differs. Fields:
+#   description  what is measured (the "Fact" column of results/data_checks.md)
+#   expected     the value the code relies on; with `tol` the comparison is numeric (absolute)
+#   brief        only where the brief says something different: what the brief says
+#   note         why it differs, or how the value is measured
+# The prevalence thresholds are not repeated here: they are read from configs/base.yaml (microbes).
+# D1 tables are stored features x samples; the shapes below are after transposing.
+
+facts:
+  # --- D1: MiMeNet IBD tables (PRISM = training cohort, NLIBD = external test cohort) ---------
+  d1.prism_microbes_shape:
+    description: PRISM microbiome, samples x species
+    expected: [155, 200]
+  d1.prism_metabolites_shape:
+    description: PRISM metabolome, samples x LC-MS features
+    expected: [155, 8848]
+  d1.prism_metabolite_range:
+    description: PRISM metabolome, min and max value
+    expected: [0.0, 385626.0]
+    tol: 1.0e-6
+  d1.prism_id_format:
+    description: "PRISM sample IDs per format (each run of digits shown as #)"
+    expected: {"PRISM|#": 155}
+  d1.prism_ibd_status_counts:
+    description: PRISM labels in D1 diagnosis_PRISM.csv
+    expected: {IBD: 121, Healthy: 34}
+    brief: CD / UC / control labels
+    note: >-
+      D1 only says IBD or Healthy. CD/UC/Control come from the D2 Franzosa Study.Group and are
+      checked against these labels when PRISM is loaded.
+  d1.prism_diagnosis_counts:
+    description: PRISM diagnosis (D2 Franzosa Study.Group via PRISM|x -> PRISM.x)
+    expected: {CD: 68, UC: 53, Control: 34}
+  d1.nlibd_microbes_shape:
+    description: NLIBD microbiome, samples x species
+    expected: [65, 200]
+  d1.nlibd_metabolites_shape:
+    description: NLIBD metabolome, samples x LC-MS features
+    expected: [65, 8848]
+  d1.nlibd_metabolite_range:
+    description: NLIBD metabolome, min and max value
+    expected: [0.0, 361959.0]
+    tol: 1.0e-6
+    note: Not in the brief; recorded so that a changed download is noticed.
+  d1.nlibd_id_format:
+    description: "NLIBD sample IDs per format (each run of digits shown as #)"
+    expected: {"Validation|LLDeep_#": 22, "Validation|UMCGIBD#": 43}
+    brief: IDs like Validation|LLDeep_0001
+    note: Two ID families; the brief's example covers only the LifeLines-DEEP one.
+  d1.nlibd_diagnosis_counts:
+    description: NLIBD diagnosis (D1 external_diagnosis.csv)
+    expected: {CD: 20, UC: 23, Control: 22}
+    note: The brief gives these counts but does not list external_diagnosis.csv.
+  d1.nlibd_diagnosis_by_id_format:
+    description: NLIBD diagnosis per ID family
+    expected:
+      "Validation|LLDeep_#": {Control: 22}
+      "Validation|UMCGIBD#": {CD: 20, UC: 23}
+    note: >-
+      Not in the brief. Every NLIBD control is a LifeLines-DEEP (population cohort) sample and
+      every patient a UMCG IBD sample, so in the external cohort diagnosis is confounded with
+      recruitment cohort.
+  d1.nlibd_same_species_as_prism:
+    description: NLIBD has the same 200 species as PRISM, in the same order
+    expected: true
+  d1.nlibd_same_features_as_prism:
+    description: NLIBD has the same 8,848 metabolite features as PRISM, in the same order
+    expected: true
+  d1.annotation_shape:
+    description: metabolome_annotation.csv, features x columns
+    expected: [466, 4]
+    brief: [466, 3]
+    note: An extra Adduct column next to retention time, m/z and compound name; harmless.
+  d1.annotated_features_in_metabolome:
+    description: Annotated features found among the metabolome features (T466)
+    expected: 466
+  d1.species_first_token_genera:
+    description: Distinct first name tokens of the 200 D1 species ("genera")
+    expected: 67
+
+  # --- D2: curated microbiome-metabolome collection -------------------------------------------
+  d2.samples:
+    description: Samples per D2 dataset
+    expected:
+      FRANZOSA_IBD_2019: 220
+      iHMP_IBDMDB_2019: 382
+      YACHIDA_CRC_2019: 347
+      WANG_ESRD_2020: 287
+      ERAWIJANTARI_GASTRIC_CANCER_2020: 96
+      MARS_IBS_2020: 444
+  d2.subjects:
+    description: Subjects per D2 dataset
+    expected:
+      FRANZOSA_IBD_2019: 220
+      iHMP_IBDMDB_2019: 105
+      YACHIDA_CRC_2019: 347
+      WANG_ESRD_2020: 287
+      ERAWIJANTARI_GASTRIC_CANCER_2020: 96
+      MARS_IBS_2020: 75
+  d2.franzosa_parts:
+    description: Franzosa samples per cohort (PRISM.* and Validation.*)
+    expected: {PRISM: 155, Validation: 65}
+  d2.franzosa_prism_id_format:
+    description: "Franzosa PRISM sample IDs per format (each run of digits shown as #)"
+    expected: {"PRISM.#": 155}
+  d2.franzosa_validation_id_format:
+    description: "Franzosa Validation sample IDs per format (each run of digits shown as #)"
+    expected: {"Validation.LLDeep_#": 22, "Validation.UMCG#": 43}
+  d2.prism_ids_shared_with_d1:
+    description: D1 PRISM IDs found in D2 after PRISM|x -> PRISM.x
+    expected: 155
+  d2.genera_row_sum_max_deviation:
+    description: Largest |row sum - 1| of genera.tsv over the six datasets
+    expected: 0.0
+    tol: 1.0e-6
+  d2.prevalent_genera:
+    description: Prevalent genera (above 1e-4 in at least 10% of a dataset's samples)
+    expected: {FRANZOSA_IBD_2019: 350, iHMP_IBDMDB_2019: 262}
+    note: >-
+      Over all samples of each dataset (Franzosa = PRISM + Validation; PRISM alone gives 354).
+      Descriptive only; models refit the filter on their training rows.
+  d2.prevalent_genera_all_six:
+    description: Genera prevalent in all six datasets
+    expected: 213
+  d2.prevalent_genera_union:
+    description: Genera prevalent in at least one of the six datasets
+    expected: 460
+  d2.prevalent_genera_franzosa_ihmp:
+    description: Genera prevalent in both Franzosa and iHMP
+    expected: 241
+  d2.source_metagenomes:
+    description: Metagenomes in the five source datasets
+    expected: 1556
+  d2.source_duplicates:
+    description: >-
+      ERAWIJANTARI samples flagged Shared.w.YACHIDA_2019, and how many have a genus profile
+      identical (max abs diff < 1e-6) to a YACHIDA sample
+    expected:
+      flagged: 53
+      flagged_identical_to_yachida: 53
+      unflagged_identical_to_yachida: 0
+    brief: 1,556 source metagenomes, all usable
+    note: >-
+      The 53 flagged samples are YACHIDA metagenomes published twice; the flag agrees with
+      profile identity. load_sources drops the ERAWIJANTARI copies by default.
+  d2.source_unique_metagenomes:
+    description: Source metagenomes after dropping the flagged duplicates
+    expected: 1503
+    brief: 1556
+    note: 1,556 - 53 duplicates.
+  d2.source_target_shared_ids:
+    description: Source sample / subject IDs that also occur in Franzosa
+    expected: {samples: 0, subjects: 0}
+  d2.ihmp_metabolite_features:
+    description: Metabolite features in iHMP mtb.tsv.zip
+    expected: 81867
+  d2.ihmp_hmdb_mapped_features:
+    description: iHMP metabolite features with an HMDB ID (read via usecols)
+    expected: 507
+  d2.ihmp_hmdb_nan_fraction:
+    description: Fraction of missing values in iHMP's HMDB-mapped metabolome
+    expected: 0.082
+    tol: 0.001
+    note: Not in the brief. NaN is kept by the loader; the policy is decided downstream.
+  d2.ihmp_hmdb_value_range:
+    description: iHMP HMDB-mapped metabolome, min and max value
+    expected: [5.0, 30474787830.0]
+    tol: 1.0
+    note: Not in the brief. A different intensity scale from Franzosa's, so scaling is per cohort.
+  d2.hmdb_shared_franzosa_ihmp:
+    description: HMDB IDs shared by Franzosa and iHMP
+    expected: 176
+  d2.hmdb_shared_inside_t466:
+    description: Shared HMDB IDs whose Franzosa features all lie in T466
+    expected: 176
+  d2.franzosa_features_are_d1_features:
+    description: Franzosa metabolite IDs, minus the appended compound name, equal D1's in order
+    expected: true
+  d2.prism_metabolome_max_abs_diff_vs_d1:
+    description: Largest |D1 - D2| over the PRISM metabolome (same samples and features)
+    expected: 0.0
+    tol: 1.0e-6
+  d2.nlibd_validation_one_to_one_matches:
+    description: NLIBD samples matched one-to-one to a Validation sample by identical metabolome
+    expected: 65
+    brief: D1 and D2 IDs correspond by replacing | with . (PRISM|7122 vs PRISM.7122)
+    note: >-
+      True for PRISM and the 22 LLDeep samples only; the 43 IBD patients have different IDs
+      (UMCGIBD... in D1, UMCG9189151-like in D2). All 65 NLIBD samples are therefore matched by
+      identical log1p metabolomes (max abs diff < 1e-6).
+  d2.nlibd_validation_ids_agree:
+    description: >-
+      NLIBD IDs that also exist in D2 (after | -> .), and how many of them the metabolome match
+      pairs with that same ID
+    expected: {ids_in_both_releases: 22, matched_to_the_same_id: 22}
+    note: An independent cross-check of the metabolome matching.
+
+  # --- D3: MGM ----------------------------------------------------------------------------------
+  mgm.files_missing:
+    description: MGM weights, config, tokenizer and phylogeny files that are missing
+    expected: []
+  mgm.architecture:
+    description: MGM general_model/config.json
+    expected:
+      model_type: gpt2
+      n_layer: 8
+      n_embd: 256
+      n_head: 8
+      n_positions: 512
+      vocab_size: 9669
+  mgm.phylogeny_genera:
+    description: Genera in MGM's phylogeny.csv (the genus vocabulary)
+    expected: 9665
+  mgm.special_tokens:
+    description: Vocabulary size minus phylogeny genera (pad, mask, bos, eos)
+    expected: 4
+  mgm.d1_genera_in_vocabulary:
+    description: D1 species first-token genera found in MGM's vocabulary
+    expected: 59
+    note: The 8 misses are higher ranks (e.g. Lachnospiraceae, Clostridiales).
+  mgm.d2_prevalent_name_coverage:
+    description: Fraction of Franzosa's 350 prevalent GTDB genera in MGM's vocabulary
+    expected: 0.42
+    tol: 0.01
+    note: >-
+      Reproduces the brief only after stripping GTDB split suffixes (Faecalibacterium_A ->
+      Faecalibacterium); without stripping it is 0.33.
+  mgm.d2_abundance_coverage:
+    description: >-
+      Mean share of a Franzosa sample's abundance in genera MGM's vocabulary contains
+      (suffixes stripped, all genus columns)
+    expected: 0.81
+    tol: 0.01
+    note: >-
+      The brief's 81% is reproduced over all genus columns; restricting the sum to the 350
+      prevalent genera gives 0.79.

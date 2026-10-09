@@ -1,0 +1,70 @@
+# Shared settings. Every experiment config starts with `extends: base.yaml`.
+# Values here are the protocol of section 4-5 of the brief; change them only on purpose.
+
+seeds: [0, 1, 2, 3, 4]          # model seeds for every neural model (mean ± SD over these)
+
+microbes:
+  abundance_threshold: 1.0e-4   # a taxon is "present" in a sample above this relative abundance
+  min_prevalence: 0.10          # ... and kept if present in at least this fraction of TRAINING samples
+  transform: clr                # clr | log   (ablation A1)
+  standardize: true             # z-score each feature with TRAINING mean/std
+
+metabolites:
+  transform: log10              # log10 | clr (ablation A2)
+  max_zero_fraction: 0.5        # drop a target if zero in more than this fraction of TRAINING samples
+  standardize: true
+  pseudocount: half_min_nonzero # CLR only: ½ smallest non-zero value per sample (or a number, e.g. 1)
+
+target_sets: [T466, TALL]       # T466 = 466 annotated metabolites (main); TALL = all retained features
+
+cv:
+  n_splits: 5
+  seed: 20261008                # fixed so every model sees the same folds (saved to results/splits/)
+  stratify_by: diagnosis        # CD / UC / Control
+
+inner_validation:
+  fraction: 0.2                 # early-stopping split carved out of the training data only
+  seed_offset: 1000             # inner split seed = model seed + offset (decorrelates it from init)
+
+evaluation:
+  top_k: 50
+  rho_threshold: 0.5
+  null_quantile: 0.95
+  n_permutations: 20
+  permutation_seed: 7
+  n_bootstrap: 1000
+  bootstrap_seed: 11
+  ci_level: 0.95
+  ci_method: basic             # reflected bootstrap: resampled ties bias Spearman ρ toward 0
+
+ridge:                          # E0 multi-output ridge; alpha chosen per metabolite by efficient LOO (GCV)
+  log10_alpha_min: -2
+  log10_alpha_max: 5
+  n_alphas: 36
+  alpha_per_target: true
+
+mlp:                            # E1 architecture: input → 256 → 128 (ReLU, dropout) → linear head
+  hidden: [256, 128]
+  grid:                         # the brief's grid; its "dropout 0.3" is only the class default
+    lr: [1.0e-3, 3.0e-4]
+    dropout: [0.2, 0.5]
+    weight_decay: [1.0e-4, 1.0e-2]
+  train:
+    batch_size: 32
+    max_epochs: 500
+    patience: 30
+    min_delta: 0.0
+    # Learning-curve subsets (16 fit rows at n = 20) would get one optimiser step per epoch;
+    # shrinking their batch to keep >= 4 steps halves the epochs needed with the same accuracy
+    # (PRISM check: n = 20 ρ 0.266 vs 0.261). Full-data fits (99-124 rows) already have 4 steps.
+    min_batches_per_epoch: 4
+
+learning_curve:                 # E5: every model trains on the same saved PRISM subsets
+  sizes: [20, 40, 80, 155]
+  target_set: T466
+
+mlflow:
+  enabled: true
+  experiment_prefix: m2m
+
+n_jobs: 8                       # parallel worker processes for CV folds / grids
