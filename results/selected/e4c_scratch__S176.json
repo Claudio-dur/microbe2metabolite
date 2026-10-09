@@ -1,0 +1,11 @@
+{
+  "cv_mean_rho": 0.444585444574393,
+  "n_configs": 8,
+  "name": "e4c_scratch",
+  "params": {
+    "dropout": 0.2,
+    "lr": 0.0003,
+    "weight_decay": 0.01
+  },
+  "target_set": "S176"
+}

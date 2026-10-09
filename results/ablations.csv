@@ -1,0 +1,19 @@
+ablation,arm,model,target_set,eval_space,is_default_arm,override,cv_mean_rho,timestamp
+A1_input_transform,clr,ridge,T466,log10,True,"{""microbes"": {""transform"": ""clr""}}",0.4108936194492311,2026-10-09T10:28:44Z
+A1_input_transform,clr,mlp,T466,log10,True,"{""microbes"": {""transform"": ""clr""}}",0.405072715973518,2026-10-09T10:28:46Z
+A1_input_transform,log,ridge,T466,log10,False,"{""microbes"": {""transform"": ""log""}}",0.4139717225064324,2026-10-09T10:28:48Z
+A1_input_transform,log,mlp,T466,log10,False,"{""microbes"": {""transform"": ""log""}}",0.4111704900900476,2026-10-09T10:28:49Z
+A2_target_transform,log10,ridge,T466,log10,True,"{""metabolites"": {""transform"": ""log10""}}",0.4108936194492311,2026-10-09T10:28:49Z
+A2_target_transform,log10,mlp,T466,log10,True,"{""metabolites"": {""transform"": ""log10""}}",0.405072715973518,2026-10-09T10:28:50Z
+A2_target_transform,clr,ridge,T466,clr,False,"{""metabolites"": {""transform"": ""clr""}}",0.4220906493107502,2026-10-09T10:28:50Z
+A2_target_transform,clr,ridge,T466,log10,False,"{""metabolites"": {""transform"": ""clr""}}",0.34694123410029015,2026-10-09T10:28:50Z
+A2_target_transform,clr,mlp,T466,clr,False,"{""metabolites"": {""transform"": ""clr""}}",0.41466373031933623,2026-10-09T10:28:51Z
+A2_target_transform,clr,mlp,T466,log10,False,"{""metabolites"": {""transform"": ""clr""}}",0.33599638669185494,2026-10-09T10:28:52Z
+A3_prevalence,0.05,ridge,T466,log10,False,"{""microbes"": {""min_prevalence"": 0.05}}",0.40620296402551404,2026-10-09T10:28:52Z
+A3_prevalence,0.05,mlp,T466,log10,False,"{""microbes"": {""min_prevalence"": 0.05}}",0.3923463999525839,2026-10-09T10:28:53Z
+A3_prevalence,0.10,ridge,T466,log10,True,"{""microbes"": {""min_prevalence"": 0.1}}",0.4108936194492311,2026-10-09T10:28:53Z
+A3_prevalence,0.10,mlp,T466,log10,True,"{""microbes"": {""min_prevalence"": 0.1}}",0.405072715973518,2026-10-09T10:28:54Z
+A3_prevalence,0.20,ridge,T466,log10,False,"{""microbes"": {""min_prevalence"": 0.2}}",0.393157424206015,2026-10-09T10:28:54Z
+A3_prevalence,0.20,mlp,T466,log10,False,"{""microbes"": {""min_prevalence"": 0.2}}",0.3725593448547895,2026-10-09T10:28:55Z
+A4_published_protocol,clr_x_plus_1,ridge,T466_from_all,clr,False,"{""metabolites"": {""max_zero_fraction"": 1.0, ""pseudocount"": 1.0, ""transform"": ""clr""}}",0.41299736951405236,2026-10-09T10:28:56Z
+A4_published_protocol,clr_x_plus_1,mlp,T466_from_all,clr,False,"{""metabolites"": {""max_zero_fraction"": 1.0, ""pseudocount"": 1.0, ""transform"": ""clr""}}",0.3962520766994324,2026-10-09T10:29:00Z

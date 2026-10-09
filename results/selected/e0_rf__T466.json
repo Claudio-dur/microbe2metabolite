@@ -1,0 +1,11 @@
+{
+  "cv_mean_rho": 0.40317013710288635,
+  "n_configs": 1,
+  "name": "e0_rf",
+  "params": {
+    "max_features": 0.333,
+    "min_samples_leaf": 5,
+    "n_estimators": 500
+  },
+  "target_set": "T466"
+}

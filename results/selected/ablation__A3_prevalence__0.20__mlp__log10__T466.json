@@ -1,0 +1,11 @@
+{
+  "cv_mean_rho": 0.3725593448547895,
+  "n_configs": 1,
+  "name": "ablation__A3_prevalence__0.20__mlp__log10",
+  "params": {
+    "dropout": 0.5,
+    "lr": 0.0003,
+    "weight_decay": 0.01
+  },
+  "target_set": "T466"
+}

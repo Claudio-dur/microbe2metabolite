@@ -1,0 +1,11 @@
+{
+  "cv_mean_rho": 0.42737281726405796,
+  "n_configs": 8,
+  "name": "e4c_ihmp",
+  "params": {
+    "dropout": 0.2,
+    "lr": 0.001,
+    "weight_decay": 0.0001
+  },
+  "target_set": "T466"
+}

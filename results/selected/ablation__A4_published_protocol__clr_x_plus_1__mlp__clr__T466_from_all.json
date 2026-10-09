@@ -1,0 +1,11 @@
+{
+  "cv_mean_rho": 0.3962520766994324,
+  "n_configs": 1,
+  "name": "ablation__A4_published_protocol__clr_x_plus_1__mlp__clr",
+  "params": {
+    "dropout": 0.2,
+    "lr": 0.0003,
+    "weight_decay": 0.01
+  },
+  "target_set": "T466_from_all"
+}

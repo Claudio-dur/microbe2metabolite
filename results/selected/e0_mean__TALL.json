@@ -1,0 +1,9 @@
+{
+  "cv_mean_rho": 0.0,
+  "n_configs": 1,
+  "name": "e0_mean",
+  "params": {
+    "strategy": "mean"
+  },
+  "target_set": "TALL"
+}

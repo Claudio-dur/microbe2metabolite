@@ -1,0 +1,12 @@
+{
+  "cv_mean_rho": 0.41299736951405236,
+  "n_configs": 1,
+  "name": "ablation__A4_published_protocol__clr_x_plus_1__ridge__clr",
+  "params": {
+    "alpha_per_target": true,
+    "log10_alpha_max": 5,
+    "log10_alpha_min": -2,
+    "n_alphas": 36
+  },
+  "target_set": "T466_from_all"
+}

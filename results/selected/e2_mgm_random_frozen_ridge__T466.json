@@ -1,0 +1,9 @@
+{
+  "cv_mean_rho": 0.31880861453975984,
+  "n_configs": 2,
+  "name": "e2_mgm_random_frozen_ridge",
+  "params": {
+    "pooling": "mean"
+  },
+  "target_set": "T466"
+}

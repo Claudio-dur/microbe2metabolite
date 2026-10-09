@@ -1,0 +1,131 @@
+model,metabolite,compound_name,selected_by,taxon,importance_mean,importance_sd,rank,ridge_coef,ridge_coef_rank
+ridge,C18-neg_Cluster_2021,urobilin,top10,Lachnospiraceae_bacterium_7_1_58FAA,0.009179130326445262,0.01506507906522482,1,0.04880300398098924,1
+ridge,C18-neg_Cluster_2021,urobilin,top10,Bacteroides_vulgatus,0.005521404037901134,0.010299470433716588,2,-0.04070281785100341,4
+ridge,C18-neg_Cluster_2021,urobilin,top10,Holdemania_filiformis,0.005512081910515642,0.005605467475622731,3,0.04861612530138825,2
+ridge,C18-neg_Cluster_2021,urobilin,top10,Alistipes_putredinis,0.0054240306943658554,0.009364776388759315,4,0.031030400180417927,15
+ridge,C18-neg_Cluster_2021,urobilin,top10,Clostridium_clostridioforme,0.005261099041363159,0.005990070826065285,5,-0.045170405016347934,3
+ridge,C18-neg_Cluster_0361,eicosatrienoic acid,top10,Eubacterium_ramulus,0.008560578110423656,0.010611582266246046,1,-0.04783457447453987,2
+ridge,C18-neg_Cluster_0361,eicosatrienoic acid,top10,Clostridium_clostridioforme,0.006619474015435634,0.010144924549748092,2,0.028083468821731284,15
+ridge,C18-neg_Cluster_0361,eicosatrienoic acid,top10,Ruminococcus_gnavus,0.005482589949956096,0.011515823305096349,3,0.044214856469248796,3
+ridge,C18-neg_Cluster_0361,eicosatrienoic acid,top10,Lachnospiraceae_bacterium_5_1_57FAA,0.005035718346994522,0.004955419529077045,4,0.026262813252479478,20
+ridge,C18-neg_Cluster_0361,eicosatrienoic acid,top10,Clostridium_bolteae,0.004914901427335106,0.00912658347771606,5,0.028345812905758362,14
+ridge,C18-neg_Cluster_0863,docosapentaenoic acid,top10,Bacteroides_uniformis,0.007581676778255253,0.012925952192978716,1,-0.025739848781739415,10
+ridge,C18-neg_Cluster_0863,docosapentaenoic acid,top10,Butyricicoccus_pullicaecorum,0.0068886005583416845,0.017697662683367307,2,0.03246265187324639,4
+ridge,C18-neg_Cluster_0863,docosapentaenoic acid,top10,Bacteroides_thetaiotaomicron,0.005740719269713113,0.011721727630898762,3,-0.019532784403355364,28
+ridge,C18-neg_Cluster_0863,docosapentaenoic acid,top10,Anaerostipes_caccae,0.005037937955299876,0.012890394358525766,4,0.0180953574886292,36
+ridge,C18-neg_Cluster_0863,docosapentaenoic acid,top10,Erysipelotrichaceae_bacterium_5_2_54FAA,0.0035309319526479976,0.009994515491056531,5,0.014623437485696366,53
+ridge,HILIC-neg_Cluster_0441,sebacate,top10,Dorea_unclassified,0.00649590048004216,0.007634424162616364,1,-0.03111213444751678,9
+ridge,HILIC-neg_Cluster_0441,sebacate,top10,Clostridium_leptum,0.006025778837445728,0.01448063857202454,2,0.04095134916497151,1
+ridge,HILIC-neg_Cluster_0441,sebacate,top10,Roseburia_hominis,0.005892844596770841,0.006177199077301644,3,0.033747689352815,7
+ridge,HILIC-neg_Cluster_0441,sebacate,top10,Butyricicoccus_pullicaecorum,0.0057048861121368425,0.00627194006700962,4,-0.027596261522471733,14
+ridge,HILIC-neg_Cluster_0441,sebacate,top10,Lachnospiraceae_bacterium_1_4_56FAA,0.0051156964340025365,0.009057312364437879,5,-0.029408131134122384,10
+ridge,HILIC-pos_Cluster_0447,ADMA,top10,Bacteroides_cellulosilyticus,0.014147177419354817,0.010683943323214713,1,-0.04517900518066564,3
+ridge,HILIC-pos_Cluster_0447,ADMA,top10,Leuconostoc_citreum,0.006559274193548403,0.008661605994014665,2,0.048876991848353014,1
+ridge,HILIC-pos_Cluster_0447,ADMA,top10,Subdoligranulum_unclassified,0.0064858870967742675,0.011903510089543712,3,-0.04352517575149247,4
+ridge,HILIC-pos_Cluster_0447,ADMA,top10,Haemophilus_parainfluenzae,0.006037903225806396,0.01971257814458896,4,0.04642785617234657,2
+ridge,HILIC-pos_Cluster_0447,ADMA,top10,Megasphaera_unclassified,0.005947177419354776,0.015394409474452801,5,0.035548113359956585,10
+ridge,C18-neg_Cluster_0079,undecanedionate,top10,Peptostreptococcaceae_noname_unclassified,0.009618992002564197,0.01965735652117851,1,-0.03439777502142128,3
+ridge,C18-neg_Cluster_0079,undecanedionate,top10,Alistipes_onderdonkii,0.009195389003037046,0.010488047522409415,2,0.027591933112160183,8
+ridge,C18-neg_Cluster_0079,undecanedionate,top10,Klebsiella_pneumoniae,0.00737559627089972,0.005298221747209919,3,-0.02825469065096837,7
+ridge,C18-neg_Cluster_0079,undecanedionate,top10,Bacteroides_vulgatus,0.006891587770979713,0.005700976040472463,4,-0.017288040589293768,33
+ridge,C18-neg_Cluster_0079,undecanedionate,top10,Ruminococcus_gnavus,0.006685370141655178,0.005303967517836443,5,-0.02673159364555954,11
+ridge,HILIC-neg_Cluster_0220,3-methyladipate-pimelate,top10,Burkholderiales_bacterium_1_1_47,0.015747997078674005,0.007663739552680128,1,0.05423177681392186,1
+ridge,HILIC-neg_Cluster_0220,3-methyladipate-pimelate,top10,Parasutterella_excrementihominis,0.009684780570828532,0.006183419897932951,2,0.04579180725467711,2
+ridge,HILIC-neg_Cluster_0220,3-methyladipate-pimelate,top10,Butyricicoccus_pullicaecorum,0.008631185825777533,0.010481328384107463,3,-0.04359480460808765,3
+ridge,HILIC-neg_Cluster_0220,3-methyladipate-pimelate,top10,Oscillibacter_unclassified,0.005233544166149717,0.010611224230099503,4,0.03744786979941743,5
+ridge,HILIC-neg_Cluster_0220,3-methyladipate-pimelate,top10,Bacteroides_stercoris,0.002808368840306419,0.004282068314311853,5,-0.020077999007956242,35
+ridge,C8-pos_Cluster_0339,linoleoyl ethanolamide ,top10,Ruminococcus_gnavus,0.021615322580645226,0.014323144080274613,1,0.0653479214638716,1
+ridge,C8-pos_Cluster_0339,linoleoyl ethanolamide ,top10,Alistipes_senegalensis,0.021276209677419167,0.023269759353659478,2,-0.057169017219583965,2
+ridge,C8-pos_Cluster_0339,linoleoyl ethanolamide ,top10,Ruminococcus_bromii,0.01735806451612909,0.010878181329409441,3,-0.049048398454381026,4
+ridge,C8-pos_Cluster_0339,linoleoyl ethanolamide ,top10,Flavonifractor_plautii,0.01531491935483864,0.01628089478617087,4,0.04180468189030549,8
+ridge,C8-pos_Cluster_0339,linoleoyl ethanolamide ,top10,Roseburia_hominis,0.01387943548387085,0.013597327646175713,5,-0.047918934279815396,5
+ridge,HILIC-pos_Cluster_0268,pyridoxamine,top10,Clostridium_leptum,0.02442137096774184,0.020295570318211907,1,0.07055197644793323,4
+ridge,HILIC-pos_Cluster_0268,pyridoxamine,top10,Anaerostipes_hadrus,0.01833911290322563,0.013650527821094698,2,0.06517437048785371,5
+ridge,HILIC-pos_Cluster_0268,pyridoxamine,top10,Bacteroides_vulgatus,0.01733548387096755,0.012786484288490312,3,-0.055583398128195294,8
+ridge,HILIC-pos_Cluster_0268,pyridoxamine,top10,Ruminococcus_torques,0.016716532258064354,0.019890848231279182,4,0.08932357657311983,1
+ridge,HILIC-pos_Cluster_0268,pyridoxamine,top10,Rothia_mucilaginosa,0.016083467741935344,0.02997855750483802,5,-0.0871988254091659,2
+ridge,HILIC-neg_Cluster_0697,pentadecanoate,top10,Lachnospiraceae_bacterium_8_1_57FAA,0.015008467741935294,0.015122152467029394,1,-0.05342951123104972,5
+ridge,HILIC-neg_Cluster_0697,pentadecanoate,top10,Leuconostoc_citreum,0.013411693548387182,0.007736513584685389,2,-0.0638233793537467,2
+ridge,HILIC-neg_Cluster_0697,pentadecanoate,top10,Roseburia_intestinalis,0.013264112903225777,0.014655144581839254,3,-0.04010027675423251,13
+ridge,HILIC-neg_Cluster_0697,pentadecanoate,top10,Clostridium_leptum,0.012222177419354807,0.011436130279400969,4,0.0501595063490994,7
+ridge,HILIC-neg_Cluster_0697,pentadecanoate,top10,Veillonella_dispar,0.010660887096774263,0.012378253232816447,5,-0.05553823961004321,4
+ridge,C18-neg_Cluster_0832,chenodeoxycholate,"class:Bile acids, alcohols and derivatives",Haemophilus_parainfluenzae,0.009857094597808924,0.015792007911186543,1,0.04579139009855094,2
+ridge,C18-neg_Cluster_0832,chenodeoxycholate,"class:Bile acids, alcohols and derivatives",Eubacterium_sp_3_1_31,0.008543378414064495,0.008690726704879808,2,-0.02793991053718964,14
+ridge,C18-neg_Cluster_0832,chenodeoxycholate,"class:Bile acids, alcohols and derivatives",Rothia_mucilaginosa,0.00811397130067013,0.008209728842020828,3,0.02529519578246392,24
+ridge,C18-neg_Cluster_0832,chenodeoxycholate,"class:Bile acids, alcohols and derivatives",Acidaminococcus_unclassified,0.007848428511545213,0.008118766002063718,4,0.01995498895923845,45
+ridge,C18-neg_Cluster_0832,chenodeoxycholate,"class:Bile acids, alcohols and derivatives",Bacteroides_vulgatus,0.007799932197943238,0.011072451505554245,5,0.03313035949832673,6
+ridge,HILIC-neg_Cluster_0452,tryptophan,class:Indoles and derivatives,Bacteroides_ovatus,0.03628225806451625,0.03009988814011984,1,-0.05417793022396369,3
+ridge,HILIC-neg_Cluster_0452,tryptophan,class:Indoles and derivatives,Prevotella_copri,0.022664919354838664,0.014398232199324425,2,-0.06648222169905496,1
+ridge,HILIC-neg_Cluster_0452,tryptophan,class:Indoles and derivatives,Clostridium_asparagiforme,0.01965967741935489,0.005654429567608215,3,-0.03893151755202214,17
+ridge,HILIC-neg_Cluster_0452,tryptophan,class:Indoles and derivatives,Butyricicoccus_pullicaecorum,0.01747338709677414,0.02230768010759176,4,0.04234120297226098,7
+ridge,HILIC-neg_Cluster_0452,tryptophan,class:Indoles and derivatives,Dorea_unclassified,0.015539516129032305,0.016571201771379315,5,0.03608701222404874,20
+ridge,HILIC-neg_Cluster_0013,butyrate / isobutytare*,class:Straight chain fatty acids,Clostridium_bartlettii,0.03444314516129038,0.032967535796988946,1,0.08309578313211272,3
+ridge,HILIC-neg_Cluster_0013,butyrate / isobutytare*,class:Straight chain fatty acids,Ruminococcus_torques,0.032608064516129076,0.014701449195512094,2,0.1240982665712497,2
+ridge,HILIC-neg_Cluster_0013,butyrate / isobutytare*,class:Straight chain fatty acids,Rothia_mucilaginosa,0.021559274193548528,0.054582060678210205,3,-0.12671394338178352,1
+ridge,HILIC-neg_Cluster_0013,butyrate / isobutytare*,class:Straight chain fatty acids,Parabacteroides_unclassified,0.017676612903225867,0.025690359884637855,4,-0.047106780458668576,19
+ridge,HILIC-neg_Cluster_0013,butyrate / isobutytare*,class:Straight chain fatty acids,Odoribacter_splanchnicus,0.01682580645161281,0.0368411701068423,5,-0.061679231571016936,7
+mlp,C18-neg_Cluster_2021,urobilin,top10,Ruminococcus_gnavus,0.004425783048519824,0.0035657214755622875,1,-0.015429718953729465,66
+mlp,C18-neg_Cluster_2021,urobilin,top10,Coprococcus_comes,0.004293363324028068,0.003615058307207037,2,0.024177259657595263,30
+mlp,C18-neg_Cluster_2021,urobilin,top10,Clostridium_clostridioforme,0.004222349246909486,0.0032074706488743206,3,-0.045170405016347934,3
+mlp,C18-neg_Cluster_2021,urobilin,top10,Lachnospiraceae_bacterium_1_4_56FAA,0.004007635080999527,0.003791605835224324,4,-0.0200336904177967,45
+mlp,C18-neg_Cluster_2021,urobilin,top10,Lactobacillus_gasseri,0.003750808721157703,0.002553509460251601,5,-0.039448487094548526,5
+mlp,C18-neg_Cluster_0361,eicosatrienoic acid,top10,Megasphaera_unclassified,0.007802466323673966,0.004230180773807202,1,0.036002911028180845,5
+mlp,C18-neg_Cluster_0361,eicosatrienoic acid,top10,Lachnospiraceae_bacterium_5_1_57FAA,0.005921021728355038,0.005692303637693452,2,0.026262813252479478,20
+mlp,C18-neg_Cluster_0361,eicosatrienoic acid,top10,Streptococcus_salivarius,0.0057177938051110695,0.003648293765463713,3,-0.02613732833902861,22
+mlp,C18-neg_Cluster_0361,eicosatrienoic acid,top10,Butyricicoccus_pullicaecorum,0.00571718607801727,0.010459980981520676,4,0.03257155232844572,8
+mlp,C18-neg_Cluster_0361,eicosatrienoic acid,top10,Ruminococcus_gnavus,0.005688732206072192,0.0024699316438706567,5,0.044214856469248796,3
+mlp,C18-neg_Cluster_0863,docosapentaenoic acid,top10,Butyricicoccus_pullicaecorum,0.008112321720473162,0.009783880887748649,1,0.03246265187324639,4
+mlp,C18-neg_Cluster_0863,docosapentaenoic acid,top10,Eubacterium_siraeum,0.007261698701596693,0.0064183720981628774,2,-0.035101577117822205,1
+mlp,C18-neg_Cluster_0863,docosapentaenoic acid,top10,Clostridium_ramosum,0.00599270980011482,0.003583793712402701,3,0.02557449128502153,11
+mlp,C18-neg_Cluster_0863,docosapentaenoic acid,top10,Streptococcus_salivarius,0.005838352363837051,0.0053837300916607,4,-0.02390304471608403,18
+mlp,C18-neg_Cluster_0863,docosapentaenoic acid,top10,Eubacterium_eligens,0.005530610344857271,0.00641151547538991,5,-0.03397416302154653,2
+mlp,HILIC-neg_Cluster_0441,sebacate,top10,Clostridium_leptum,0.009469385140102014,0.007415928683909939,1,0.04095134916497151,1
+mlp,HILIC-neg_Cluster_0441,sebacate,top10,Lachnospiraceae_bacterium_1_4_56FAA,0.00758242683922414,0.004974542735710464,2,-0.029408131134122384,10
+mlp,HILIC-neg_Cluster_0441,sebacate,top10,Bacteroides_vulgatus,0.007185887974899448,0.005874007198612865,3,-0.012190606171346496,68
+mlp,HILIC-neg_Cluster_0441,sebacate,top10,Ruminococcus_callidus,0.00708645986564684,0.007146284738909759,4,0.0261659617921322,16
+mlp,HILIC-neg_Cluster_0441,sebacate,top10,Roseburia_hominis,0.006662877833374594,0.0045616893477631055,5,0.033747689352815,7
+mlp,HILIC-pos_Cluster_0447,ADMA,top10,Haemophilus_parainfluenzae,0.014356451612903224,0.007406824556650909,1,0.04642785617234657,2
+mlp,HILIC-pos_Cluster_0447,ADMA,top10,Bacteroides_cellulosilyticus,0.010479999999999993,0.01043283098649115,2,-0.04517900518066564,3
+mlp,HILIC-pos_Cluster_0447,ADMA,top10,Bifidobacterium_pseudocatenulatum,0.010131370967742,0.008027094959928364,3,0.03135848566456832,18
+mlp,HILIC-pos_Cluster_0447,ADMA,top10,Lachnospiraceae_bacterium_3_1_46FAA,0.009312822580645207,0.013089151045715511,4,0.01729920498996086,57
+mlp,HILIC-pos_Cluster_0447,ADMA,top10,Anaerostipes_caccae,0.009121854838709594,0.009405983601431944,5,0.03165236466227854,17
+mlp,C18-neg_Cluster_0079,undecanedionate,top10,Clostridium_leptum,0.014238560530421274,0.013084826862494967,1,0.035279484898897304,2
+mlp,C18-neg_Cluster_0079,undecanedionate,top10,Dorea_unclassified,0.008447699604601549,0.002566678013610135,2,-0.029270133349052298,6
+mlp,C18-neg_Cluster_0079,undecanedionate,top10,Alistipes_indistinctus,0.007814444939971101,0.010634707611565009,3,0.017485893566022405,32
+mlp,C18-neg_Cluster_0079,undecanedionate,top10,Alistipes_onderdonkii,0.0072186991155342595,0.005653286360823279,4,0.027591933112160183,8
+mlp,C18-neg_Cluster_0079,undecanedionate,top10,Bacteroides_vulgatus,0.007173565697532606,0.00649646392675044,5,-0.017288040589293768,33
+mlp,HILIC-neg_Cluster_0220,3-methyladipate-pimelate,top10,Butyricicoccus_pullicaecorum,0.007672190709123864,0.003735934815037974,1,-0.04359480460808765,3
+mlp,HILIC-neg_Cluster_0220,3-methyladipate-pimelate,top10,Eubacterium_ventriosum,0.006138022952862148,0.005665633170641513,2,0.024635657214307678,24
+mlp,HILIC-neg_Cluster_0220,3-methyladipate-pimelate,top10,Dorea_formicigenerans,0.0058242110811027635,0.005684933952059448,3,0.024698455760712414,23
+mlp,HILIC-neg_Cluster_0220,3-methyladipate-pimelate,top10,Oscillibacter_unclassified,0.005561410086360077,0.0058569493179695216,4,0.03744786979941743,5
+mlp,HILIC-neg_Cluster_0220,3-methyladipate-pimelate,top10,Dorea_unclassified,0.004707312467085835,0.0027761286773433946,5,-0.029206498004484726,12
+mlp,C8-pos_Cluster_0339,linoleoyl ethanolamide ,top10,Ruminococcus_gnavus,0.015092741935483909,0.007755773655171099,1,0.0653479214638716,1
+mlp,C8-pos_Cluster_0339,linoleoyl ethanolamide ,top10,Lachnospiraceae_bacterium_9_1_43BFAA,0.009872419354838726,0.003785922534011112,2,0.04046662773671002,11
+mlp,C8-pos_Cluster_0339,linoleoyl ethanolamide ,top10,Lachnospiraceae_bacterium_6_1_63FAA,0.008749274193548304,0.006364975581408402,3,0.042460993609785336,6
+mlp,C8-pos_Cluster_0339,linoleoyl ethanolamide ,top10,Megasphaera_unclassified,0.008489032258064463,0.008572215455343264,4,0.039333360189605246,12
+mlp,C8-pos_Cluster_0339,linoleoyl ethanolamide ,top10,Coprobacillus_unclassified,0.008041612903225751,0.003857301337492398,5,0.03399235171701852,17
+mlp,HILIC-pos_Cluster_0268,pyridoxamine,top10,Clostridium_leptum,0.016048790322580556,0.0064188330554676935,1,0.07055197644793323,4
+mlp,HILIC-pos_Cluster_0268,pyridoxamine,top10,Gordonibacter_pamelaeae,0.01185750000000008,0.011720191885280031,2,0.039165431689620646,21
+mlp,HILIC-pos_Cluster_0268,pyridoxamine,top10,Anaerostipes_hadrus,0.010891854838709672,0.00957024157921959,3,0.06517437048785371,5
+mlp,HILIC-pos_Cluster_0268,pyridoxamine,top10,Rothia_mucilaginosa,0.010650967741935403,0.014923735708704162,4,-0.0871988254091659,2
+mlp,HILIC-pos_Cluster_0268,pyridoxamine,top10,Roseburia_hominis,0.010299112903225877,0.004440101357518361,5,0.03339206249549943,32
+mlp,HILIC-neg_Cluster_0697,pentadecanoate,top10,Haemophilus_parainfluenzae,0.010879112903225754,0.013230068554378763,1,-0.0344480652951566,23
+mlp,HILIC-neg_Cluster_0697,pentadecanoate,top10,Alistipes_finegoldii,0.007225725806451476,0.00915318020096639,2,0.034226060003632555,26
+mlp,HILIC-neg_Cluster_0697,pentadecanoate,top10,Dorea_unclassified,0.006590806451613002,0.00360118807806813,3,-0.06670176081325466,1
+mlp,HILIC-neg_Cluster_0697,pentadecanoate,top10,Oscillibacter_unclassified,0.006312741935483884,0.00939924131175499,4,0.03645502123186977,22
+mlp,HILIC-neg_Cluster_0697,pentadecanoate,top10,Alistipes_onderdonkii,0.00622870967741938,0.006310863358165958,5,0.03760302066960926,19
+mlp,C18-neg_Cluster_0832,chenodeoxycholate,"class:Bile acids, alcohols and derivatives",Haemophilus_parainfluenzae,0.013844954855962443,0.009801028236318904,1,0.04579139009855094,2
+mlp,C18-neg_Cluster_0832,chenodeoxycholate,"class:Bile acids, alcohols and derivatives",Bacteroides_vulgatus,0.008378692358838253,0.004558531576561222,2,0.03313035949832673,6
+mlp,C18-neg_Cluster_0832,chenodeoxycholate,"class:Bile acids, alcohols and derivatives",Subdoligranulum_unclassified,0.007171694844490828,0.002551343453519558,3,-0.024685729404551365,29
+mlp,C18-neg_Cluster_0832,chenodeoxycholate,"class:Bile acids, alcohols and derivatives",Bacteroides_cellulosilyticus,0.006974833981384977,0.003225851267258427,4,-0.031230075004362562,7
+mlp,C18-neg_Cluster_0832,chenodeoxycholate,"class:Bile acids, alcohols and derivatives",Ruminococcus_gnavus,0.006452638514111491,0.0038023928474362548,5,0.040763627183590785,3
+mlp,HILIC-neg_Cluster_0452,tryptophan,class:Indoles and derivatives,Bacteroides_ovatus,0.019735000000000037,0.014914309258521476,1,-0.05417793022396369,3
+mlp,HILIC-neg_Cluster_0452,tryptophan,class:Indoles and derivatives,Anaerostipes_caccae,0.017520161290322536,0.009056280936008467,2,0.0369326169319168,18
+mlp,HILIC-neg_Cluster_0452,tryptophan,class:Indoles and derivatives,Prevotella_copri,0.01551572580645159,0.010329851006498924,3,-0.06648222169905496,1
+mlp,HILIC-neg_Cluster_0452,tryptophan,class:Indoles and derivatives,Clostridium_bartlettii,0.015223709677419355,0.0051902143754760455,4,0.03501791197477925,23
+mlp,HILIC-neg_Cluster_0452,tryptophan,class:Indoles and derivatives,Eubacterium_eligens,0.01327508064516128,0.00761741417086502,5,-0.05218448463247292,4
+mlp,HILIC-neg_Cluster_0013,butyrate / isobutytare*,class:Straight chain fatty acids,Odoribacter_splanchnicus,0.023197580645161336,0.020581783636364863,1,-0.061679231571016936,7
+mlp,HILIC-neg_Cluster_0013,butyrate / isobutytare*,class:Straight chain fatty acids,Eubacterium_eligens,0.018532500000000042,0.02011326046226713,2,-0.019819325115774982,79
+mlp,HILIC-neg_Cluster_0013,butyrate / isobutytare*,class:Straight chain fatty acids,Clostridium_bartlettii,0.01757766129032259,0.014398260816011265,3,0.08309578313211272,3
+mlp,HILIC-neg_Cluster_0013,butyrate / isobutytare*,class:Straight chain fatty acids,Oscillibacter_sp_KLE_1745,0.016821935483870964,0.014908326036395383,4,-0.04832580482108349,17
+mlp,HILIC-neg_Cluster_0013,butyrate / isobutytare*,class:Straight chain fatty acids,Lachnospiraceae_bacterium_5_1_63FAA,0.01548403225806447,0.007542942891486739,5,0.05836412956079854,9

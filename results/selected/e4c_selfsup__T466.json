@@ -1,0 +1,11 @@
+{
+  "cv_mean_rho": 0.41614093370934785,
+  "n_configs": 8,
+  "name": "e4c_selfsup",
+  "params": {
+    "dropout": 0.5,
+    "lr": 0.0003,
+    "weight_decay": 0.01
+  },
+  "target_set": "T466"
+}

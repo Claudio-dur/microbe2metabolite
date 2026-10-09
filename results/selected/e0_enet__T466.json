@@ -1,0 +1,22 @@
+{
+  "cv_mean_rho": 0.3908705478009262,
+  "n_configs": 1,
+  "name": "e0_enet",
+  "params": {
+    "eps": 0.01,
+    "inner_folds": 5,
+    "inner_seed": 0,
+    "l1_ratio": [
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      0.95
+    ],
+    "max_iter": 10000,
+    "n_alphas": 100,
+    "tol": 0.0001
+  },
+  "target_set": "T466"
+}

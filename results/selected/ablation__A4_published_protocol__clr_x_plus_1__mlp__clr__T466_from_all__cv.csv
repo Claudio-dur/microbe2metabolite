@@ -1,0 +1,2 @@
+params,dropout,lr,weight_decay,cv_n_features,cv_n_nan,cv_mean_rho,cv_median_rho,cv_top50_mean_rho,cv_n_rho_gt_0.5,cv_n_above_null,cv_n_input_features,cv_n_targets_dropped_zero,cv_mean_rho_sd_over_folds,fold0_mean_rho,fold1_mean_rho,fold2_mean_rho,fold3_mean_rho,fold4_mean_rho
+"{""dropout"": 0.2, ""lr"": 0.0003, ""weight_decay"": 0.01}",0.2,0.0003,0.01,466.0,0.0,0.3962520766994324,0.4214112903225806,0.7482499999999999,181.2,,149.4,0.0,0.018400021489368798,0.39927661636439155,0.41492973833587155,0.3915980202132078,0.3673655337117541,0.4080904748719369

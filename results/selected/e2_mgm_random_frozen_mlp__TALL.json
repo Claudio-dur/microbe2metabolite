@@ -1,0 +1,12 @@
+{
+  "cv_mean_rho": 0.3167430939410862,
+  "n_configs": 16,
+  "name": "e2_mgm_random_frozen_mlp",
+  "params": {
+    "dropout": 0.5,
+    "lr": 0.0003,
+    "pooling": "mean",
+    "weight_decay": 0.0001
+  },
+  "target_set": "TALL"
+}

@@ -1,0 +1,146 @@
+{
+  "datasets": {
+    "ERAWIJANTARI_GASTRIC_CANCER_2020": {
+      "prevalent_genera": 329,
+      "samples": 43,
+      "subjects": 43
+    },
+    "MARS_IBS_2020": {
+      "prevalent_genera": 359,
+      "samples": 444,
+      "subjects": 75
+    },
+    "WANG_ESRD_2020": {
+      "prevalent_genera": 341,
+      "samples": 287,
+      "subjects": 287
+    },
+    "YACHIDA_CRC_2019": {
+      "prevalent_genera": 334,
+      "samples": 347,
+      "subjects": 347
+    },
+    "iHMP_IBDMDB_2019": {
+      "prevalent_genera": 262,
+      "samples": 382,
+      "subjects": 105
+    }
+  },
+  "franzosa_prism_coverage": {
+    "abundance_share_in_vocabulary": {
+      "mean": 0.9726571920087785,
+      "median": 0.9872643114629609,
+      "min": 0.6467208567773489
+    },
+    "covered": 343,
+    "covered_fraction": 0.9689265536723164,
+    "missing_genera": [
+      "Fimimorpha",
+      "UMGS1851",
+      "Enterococcus_A",
+      "Spirillospora",
+      "Lactiplantibacillus",
+      "UBA10677",
+      "HGM12587",
+      "UMGS2068",
+      "Eubacterium_J",
+      "Pediococcus",
+      "Paracoccus"
+    ],
+    "n_samples": 155,
+    "target_prevalent_genera": 354
+  },
+  "ihmp_missing_values": {
+    "left_tail_log10_q05_over_median": {
+      "never_missing": -0.7779697189154016,
+      "partly_missing": -1.2601641355954534
+    },
+    "min_detected_value": 5.0,
+    "missing_fraction": 0.08237553827565909,
+    "missing_fraction_shared_hmdb_features": 0.017957625874639133,
+    "most_missing_compounds": {
+      "C18n_QI71__hydrochlorothiazide": 0.9685863874345549,
+      "C18n_TF7__furosemide": 0.9895287958115183,
+      "HILn_QI125__UMP": 0.8455497382198953,
+      "HILn_QI56__gabapentin": 0.8115183246073299,
+      "HILn_QI70__hydrochlorothiazide": 0.9790575916230366,
+      "HILn_TF10__indoxyl sulfate": 0.8717277486910995,
+      "HILp_TF1__sulfapyridine": 0.981675392670157,
+      "HILp_TF25__C8 carnitine": 0.8403141361256544
+    },
+    "n_exact_zeros": 0,
+    "n_features": 507,
+    "n_missing": 15954,
+    "n_missing_in_whole_missing_methods": 0,
+    "n_missing_scattered": 15954,
+    "n_samples": 382,
+    "per_method": {
+      "C18-neg": {
+        "missing_fraction": 0.0627369561292652,
+        "n_features": 87,
+        "samples_missing_the_whole_method": 0
+      },
+      "C8-pos": {
+        "missing_fraction": 0.08324216613268735,
+        "n_features": 134,
+        "samples_missing_the_whole_method": 0
+      },
+      "HILIC-neg": {
+        "missing_fraction": 0.08661506942863646,
+        "n_features": 115,
+        "samples_missing_the_whole_method": 0
+      },
+      "HILIC-pos": {
+        "missing_fraction": 0.08883683904350755,
+        "n_features": 171,
+        "samples_missing_the_whole_method": 0
+      }
+    },
+    "policy": "not_detected_as_zero",
+    "rationale": "iHMP's NaN are non-detects, so they become 0 (Franzosa's encoding of a non-detect on the same Broad platform) and the usual zero filter then applies: no sample lacks a whole LC-MS method (every NaN is scattered), the table holds no exact zero at all, compounds with more NaN have lower detected intensities, most of the most-missing compounds are drugs that most people do not take (furosemide, hydrochlorothiazide, sulfapyridine, gabapentin), and partly-missing compounds show a longer low tail of detected values (left-censoring at a detection limit). Masking NaN out of the loss would instead treat absence as unknown.",
+    "spearman_missing_fraction_vs_log10_median_detected": -0.4493057470586047
+  },
+  "pretraining_table": {
+    "genus_columns": 12094,
+    "samples": 1503,
+    "subjects": 857
+  },
+  "shared_hmdb": {
+    "franzosa_features": 242,
+    "franzosa_hmdb_by_feature_count": {
+      "1_features": 136,
+      "2_features": 31,
+      "3_features": 2,
+      "4_features": 2,
+      "5_features": 3,
+      "7_features": 1,
+      "8_features": 1
+    },
+    "ihmp_features": 214,
+    "ihmp_hmdb_by_feature_count": {
+      "1_features": 142,
+      "2_features": 31,
+      "3_features": 2,
+      "4_features": 1
+    },
+    "n_hmdb": 176
+  },
+  "source_target_disjointness": {
+    "max_correlation_pair": [
+      "HSMA33SK",
+      "PRISM.7862"
+    ],
+    "max_correlation_threshold": 0.995,
+    "max_correlation_within_target": 0.8783922698213248,
+    "max_profile_correlation": 0.8521762514495917,
+    "n_source_samples": 1503,
+    "n_target_samples": 155,
+    "shared_sample_or_subject_ids": 0,
+    "target": "Franzosa PRISM"
+  },
+  "vocabulary": {
+    "digest": "56857a30e266ae04",
+    "file": "data/processed/e4/vocabulary.json",
+    "size": 462
+  }
+}

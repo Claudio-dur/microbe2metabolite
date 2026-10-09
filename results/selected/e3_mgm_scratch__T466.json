@@ -1,0 +1,10 @@
+{
+  "cv_mean_rho": 0.3122777187906993,
+  "n_configs": 3,
+  "name": "e3_mgm_scratch",
+  "params": {
+    "lr": 0.0001,
+    "pooling": "mean"
+  },
+  "target_set": "T466"
+}

@@ -1,0 +1,12 @@
+{
+  "cv_mean_rho": 0.4108936194492311,
+  "n_configs": 1,
+  "name": "ablation__A3_prevalence__0.10__ridge__log10",
+  "params": {
+    "alpha_per_target": true,
+    "log10_alpha_max": 5,
+    "log10_alpha_min": -2,
+    "n_alphas": 36
+  },
+  "target_set": "T466"
+}

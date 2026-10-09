@@ -1,0 +1,11 @@
+{
+  "cv_mean_rho": 0.3401412322248082,
+  "n_configs": 6,
+  "name": "e3_mgm_finetune",
+  "params": {
+    "backbone_lr": 1e-05,
+    "n_trainable_blocks": 1,
+    "pooling": "mean"
+  },
+  "target_set": "T466"
+}

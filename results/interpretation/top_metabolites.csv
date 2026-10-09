@@ -1,0 +1,27 @@
+model,metabolite,compound_name,chemical_class,hmdb,cv_rho,selected_by
+ridge,C18-neg_Cluster_2021,urobilin,Tetrapyrroles and derivatives,HMDB0004160,0.834309186163123,top10
+ridge,C18-neg_Cluster_0361,eicosatrienoic acid,Long-chain fatty acids,HMDB0002925,0.738908131385976,top10
+ridge,C18-neg_Cluster_0863,docosapentaenoic acid,Very long-chain fatty acids,HMDB0001976,0.7264739833317775,top10
+ridge,HILIC-neg_Cluster_0441,sebacate,Fatty acids and conjugates,HMDB0000792,0.7198936066848408,top10
+ridge,HILIC-pos_Cluster_0447,ADMA,Arginine and derivatives,HMDB0001539,0.7194354838709678,top10
+ridge,C18-neg_Cluster_0079,undecanedionate,Medium-chain fatty acids,HMDB0000888,0.717906187443906,top10
+ridge,HILIC-neg_Cluster_0220,3-methyladipate-pimelate,Medium-chain fatty acids,HMDB0000555,0.7136286145695542,top10
+ridge,C8-pos_Cluster_0339,linoleoyl ethanolamide ,Organonitrogen compounds,HMDB0012252,0.7116935483870968,top10
+ridge,HILIC-pos_Cluster_0268,pyridoxamine,Pyridoxamines,HMDB0001431,0.7089516129032258,top10
+ridge,HILIC-neg_Cluster_0697,pentadecanoate,Long-chain fatty acids,HMDB0000826,0.705,top10
+ridge,C18-neg_Cluster_0832,chenodeoxycholate,"Bile acids, alcohols and derivatives",HMDB0000518,0.6951756226604076,"class:Bile acids, alcohols and derivatives"
+ridge,HILIC-neg_Cluster_0452,tryptophan,Indoles and derivatives,HMDB0000929,0.5435483870967742,class:Indoles and derivatives
+ridge,HILIC-neg_Cluster_0013,butyrate / isobutytare*,Straight chain fatty acids,,0.5029032258064516,class:Straight chain fatty acids
+mlp,C18-neg_Cluster_2021,urobilin,Tetrapyrroles and derivatives,HMDB0004160,0.8211311528893785,top10
+mlp,C18-neg_Cluster_0361,eicosatrienoic acid,Long-chain fatty acids,HMDB0002925,0.712687251327863,top10
+mlp,C18-neg_Cluster_0863,docosapentaenoic acid,Very long-chain fatty acids,HMDB0001976,0.6866791563267335,top10
+mlp,HILIC-neg_Cluster_0441,sebacate,Fatty acids and conjugates,HMDB0000792,0.752088189307411,top10
+mlp,HILIC-pos_Cluster_0447,ADMA,Arginine and derivatives,HMDB0001539,0.7241451612903226,top10
+mlp,C18-neg_Cluster_0079,undecanedionate,Medium-chain fatty acids,HMDB0000888,0.7431570875214758,top10
+mlp,HILIC-neg_Cluster_0220,3-methyladipate-pimelate,Medium-chain fatty acids,HMDB0000555,0.6954199156308958,top10
+mlp,C8-pos_Cluster_0339,linoleoyl ethanolamide ,Organonitrogen compounds,HMDB0012252,0.6840161290322581,top10
+mlp,HILIC-pos_Cluster_0268,pyridoxamine,Pyridoxamines,HMDB0001431,0.6949516129032258,top10
+mlp,HILIC-neg_Cluster_0697,pentadecanoate,Long-chain fatty acids,HMDB0000826,0.6678548387096774,top10
+mlp,C18-neg_Cluster_0832,chenodeoxycholate,"Bile acids, alcohols and derivatives",HMDB0000518,0.7115545444205396,"class:Bile acids, alcohols and derivatives"
+mlp,HILIC-neg_Cluster_0452,tryptophan,Indoles and derivatives,HMDB0000929,0.4799354838709678,class:Indoles and derivatives
+mlp,HILIC-neg_Cluster_0013,butyrate / isobutytare*,Straight chain fatty acids,,0.45101612903225813,class:Straight chain fatty acids

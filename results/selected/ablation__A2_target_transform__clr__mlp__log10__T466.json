@@ -1,0 +1,11 @@
+{
+  "cv_mean_rho": 0.33599638669185494,
+  "n_configs": 1,
+  "name": "ablation__A2_target_transform__clr__mlp__log10",
+  "params": {
+    "dropout": 0.5,
+    "lr": 0.0003,
+    "weight_decay": 0.01
+  },
+  "target_set": "T466"
+}
