@@ -1,0 +1,46 @@
+# E4: own pretraining on the D2 source datasets, then transfer to Franzosa (brief section 6).
+#   python -m m2m.run configs/e4_transfer.yaml [--stage sources|e4a|e4b|null|select|external|curve]
+extends: base.yaml
+experiment: e4
+
+e4:
+  # Sources vs target: fail if a source and a target sample have near-identical genus profiles
+  # (Pearson r of their vocabulary CLR profiles). A re-published metagenome gives r = 1; two
+  # different PRISM people reach about 0.88.
+  near_duplicate_max_correlation: 0.995
+
+e4a:                          # masked-feature autoencoder (self-supervised, all source samples)
+  hidden: [256, 128]          # must equal mlp.hidden: the trunk is carried into the E4c MLP
+  decoder_hidden: 256
+  dropout: 0.1
+  mask_ratio: 0.25            # share of each sample's NON-ZERO genera hidden (brief: 20-30%)
+  val_fraction: 0.15          # share of subjects held out for early stopping (grouped split)
+  train_mask_seed_offset: 2000  # training masks: generator seed = model seed + offset
+  val_mask_seed_offset: 3000    # the fixed validation mask: model seed + offset
+  train:
+    lr: 1.0e-3
+    weight_decay: 1.0e-4
+    batch_size: 64
+    max_epochs: 300
+    patience: 20
+    min_delta: 0.0
+
+e4b:                          # supervised pretraining: iHMP genera -> shared HMDB metabolites
+  dropout: 0.2
+  val_fraction: 0.2           # share of iHMP subjects held out for early stopping
+  # Keep every shared metabolite (zero fraction <= 1): the head needs a row per HMDB ID so that
+  # E4c can carry it over; how many are mostly zero (base max_zero_fraction) is recorded.
+  max_zero_fraction: 1.0
+  diagnostic_seed: 0          # seed of the subject-grouped iHMP sanity-check CV
+  train:
+    lr: 1.0e-3
+    weight_decay: 1.0e-4
+    batch_size: 32
+    max_epochs: 300
+    patience: 20
+    min_delta: 0.0
+
+e4c:                          # transfer to Franzosa: PRISM folds for selection, Validation once
+  variants: [scratch, selfsup, ihmp, selfsup_ihmp]
+  target_sets: [T466, S176]   # S176 = the HMDB IDs shared with iHMP (one feature per HMDB ID)
+  selection_seed: 0           # grid search uses this model seed (and its pretrained weights)

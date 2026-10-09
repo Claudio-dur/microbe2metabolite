@@ -1,0 +1,37 @@
+# E5 learning curves (brief section 6, Q3): mean ρ on NLIBD against the number of PRISM samples.
+#   python -m m2m.run configs/e5_learning_curves.yaml [--stage check|figure]
+# The curve points are trained and scored by each model's own experiment (its `curve` stage runs
+# common.run_learning_curve on the subsets saved in results/splits/learning_curve_subsets.csv).
+# This experiment only checks that every expected point exists, writes
+# results/learning_curve_summary.csv (mean ± SD over seeds) and draws the figure.
+# Sizes, seeds and the target set come from base.yaml (learning_curve, seeds).
+extends: base.yaml
+experiment: e5
+
+figures_config: figures.yaml       # colours and labels shared with `make figures`
+
+curve_check:
+  # One entry per line the figure must show (names as the experiments record them).
+  #   model       one exact model name
+  #   prefix      every model on the curve starting with it (minus `exclude`)
+  #   selections  {candidate model: its saved selection in results/selected/}: when those files
+  #               exist, the entry expects exactly the candidate with the highest saved CV mean ρ
+  #               (first listed on ties), i.e. the rule the experiment itself applied.
+  # Nothing here picks a model from external scores: the check reads PRISM CV selections and
+  # verifies what the experiments recorded; it never compares the curves.
+  expected:
+    - {what: "E0 ridge", model: ridge}
+    - {what: "E1 MLP", model: mlp}
+    - what: "E2 head chosen for the curve"            # E2 curve stage: head with higher CV
+      prefix: mgm_frozen
+      selections: {mgm_frozen_ridge: e2_mgm_frozen_ridge, mgm_frozen_mlp: e2_mgm_frozen_mlp}
+    - {what: "E3 MGM fine-tuned", model: mgm_finetune}
+    # H1 control of mgm_finetune: MGM's architecture and tokens trained from random weights
+    # (E3 trains it on the same subsets, seeds and target preprocessing).
+    - {what: "E3 MGM architecture from scratch", model: mgm_scratch}
+    - {what: "E4c from scratch (D2)", model: e4c_scratch}
+    - what: "E4c best pretrained variant (D2)"        # E4 curve stage: best pretrained by CV
+      prefix: e4c_
+      exclude: [e4c_scratch]
+      selections: {e4c_selfsup: e4c_selfsup, e4c_ihmp: e4c_ihmp,
+                   e4c_selfsup_ihmp: e4c_selfsup_ihmp}

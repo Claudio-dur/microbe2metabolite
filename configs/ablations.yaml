@@ -1,0 +1,40 @@
+# Ablations A1-A4 on D1 (brief section 6; docs/DESIGN.md decision #18; src/m2m/experiments/ablations.py).
+#   .venv/bin/python -m m2m.run configs/ablations.yaml [--stage cv|external]
+# Needs E0 (cv and null stages: ridge CV, null thresholds) and E1 (select stage: MLP
+# hyperparameters) first. Each arm is an override deep-merged into this config; anything it does
+# not override (folds, seeds, hyperparameters) is the main protocol's. An arm whose override
+# changes nothing is the main configuration: its CV mean ρ must equal E0 ridge's / E1 MLP's
+# exactly, and the cv stage raises if it does not.
+extends: base.yaml
+experiment: ablations
+
+cv_seed: 0                    # must equal configs/e1_mlp.yaml cv_seed (see above)
+
+ablations:
+  target_sets: [T466]         # A1-A3 run on these; A4 sets its own below
+  reproduce_tolerance: 0.0    # allowed |default-arm CV mean ρ - main CV mean ρ| (0 = exact)
+  models:                     # ablations.csv model names
+    ridge:
+      external_seeds: [0]     # GCV ridge is deterministic
+    mlp: {}                   # E1's saved selection; every model seed of base.yaml
+  studies:
+    A1_input_transform:       # CLR (main) vs log10, same per-sample pseudocount
+      arms:
+        clr: {microbes: {transform: clr}}
+        log: {microbes: {transform: log}}
+    A2_target_transform:      # log10(x + 1) (main) vs per-sample CLR (MiMeNet)
+      also_score_in: [log10]  # the CLR arm is also scored against log10 truth of its metabolites
+      arms:
+        log10: {metabolites: {transform: log10}}
+        clr: {metabolites: {transform: clr}}
+    A3_prevalence:            # keep taxa above 1e-4 in at least this fraction of training samples
+      arms:
+        "0.05": {microbes: {min_prevalence: 0.05}}
+        "0.10": {microbes: {min_prevalence: 0.10}}
+        "0.20": {microbes: {min_prevalence: 0.20}}
+    A4_published_protocol:    # mNODE / MiMeNet evaluation (docs/published_numbers.md)
+      train_target_set: TALL  # every feature is an output (no zero filter: all 8,848)
+      score_target_set: T466  # ρ reported over the 466 annotated metabolites only
+      target_set_label: T466_from_all
+      arms:
+        clr_x_plus_1: {metabolites: {transform: clr, pseudocount: 1.0, max_zero_fraction: 1.0}}

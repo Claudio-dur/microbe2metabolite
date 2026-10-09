@@ -1,0 +1,49 @@
+# Figures in results/figures/ (make figures):
+#   python -m m2m.run configs/figures.yaml [--stage <figure name>]
+# Presentation only: nothing here changes a result. Every figure is drawn from files the
+# experiments already wrote; a figure whose inputs are missing is skipped and the reason printed.
+extends: base.yaml
+experiment: figures
+
+figures:
+  dpi: 200
+  test_cohort: NLIBD               # named in every title ("PRISM hold-out (DRY RUN)" in dry runs)
+  main_target_set: T466            # per-metabolite ECDF and null histogram
+  target_sets: [T466, TALL, S176]  # panel order of the summary figures (only those present)
+
+  # The constant predictor is the ρ = 0 reference: drawn in grey, never as a coloured series.
+  reference_models: [mean]
+
+  # Families group and order the models in every figure. A model's family is the experiment that
+  # evaluated it (summary.csv `experiment`); a name prefix is the fallback for other files.
+  families:
+    - name: Baselines
+      experiments: [e0]
+      prefixes: [mean, ridge, enet, rf]
+    - name: MLP
+      experiments: [e1]
+      prefixes: [mlp]
+    - name: MGM
+      experiments: [e2, e3]
+      prefixes: [mgm]
+    - name: E4 transfer
+      experiments: [e4]
+      prefixes: [e4, d2_]
+  # Order inside a family (exact name, else name prefix); unlisted models follow alphabetically.
+  # Names as the experiments record them (E0 MODEL_ORDER, E1, E2 heads, E3, E4 d2_ridge + E4c).
+  # Controls sit next to the model they control (H1 reads left to right).
+  model_order: [mean, ridge, enet, rf, mlp,
+                mgm_frozen_ridge, mgm_random_frozen_ridge, mgm_frozen_mlp, mgm_random_frozen_mlp,
+                mgm_finetune, mgm_scratch,
+                d2_ridge, e4c_scratch, e4c_selfsup, e4c_ihmp, e4c_selfsup_ihmp]
+
+  null_figure:                     # null_distribution.png (a bare `null:` key would parse as None)
+    data: D1                       # reads data/processed/null/<data>__<main_target_set>.npy
+    model: ridge                   # the model whose per-metabolite ρ is set against the null
+    bins: 40
+
+  coverage:                        # mgm_coverage.png: sample-id prefix -> cohort name
+    cohort_labels: {PRISM: PRISM, Validation: NLIBD}
+
+  importance:
+    top_k: 5                       # columns = union of each metabolite's top-k taxa

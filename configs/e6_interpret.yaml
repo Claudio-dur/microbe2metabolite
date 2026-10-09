@@ -1,0 +1,53 @@
+# E6 interpretation (brief Q4, section 6). PRISM cross-validation only (DESIGN.md decision #14):
+# the external cohort is never opened. `classes` only reads the per-metabolite external ρ files
+# that the final evaluations already wrote.
+#   python -m m2m.run configs/e6_interpret.yaml [--stage importance|classes] [--n-jobs N]
+# Stages: importance -> classes. Outputs: results/interpretation/{top_metabolites,
+# permutation_importance,rho_by_class}.csv.
+extends: base.yaml
+experiment: e6
+
+interpret:
+  target_set: T466              # the main target set (the 466 annotated metabolites)
+
+  importance:                   # ridge (+ the E1 MLP as a second view), refit in the PRISM folds
+    n_top_metabolites: 10       # explain the metabolites with the highest ridge CV ρ
+    one_feature_per_hmdb: true  # keep only the best LC-MS feature of each HMDB compound: several
+                                # methods (or unresolved isomers) measure one compound, and without
+                                # this the PRISM top 10 holds only 7 compounds (urobilin x2,
+                                # docosapentaenoic acid x3), explaining the same signal twice.
+                                # Features without an HMDB ID count as distinct compounds. Applied
+                                # to the whole ranking, so the class picks below follow it too.
+    # Also explain the best metabolite (ridge CV ρ) of each class below, unless the class already
+    # has one in the top 10 (selected_by = class:<name>). Exact Putative.Chemical.Class strings of
+    # the D2 Franzosa map (a typo is refused). Bile acids, tryptophan/indoles and short-chain fatty
+    # acids are the three families of microbial metabolites most studied in IBD (Lavelle & Sokol,
+    # Nat Rev Gastroenterol Hepatol 2020).
+    named_classes:
+      # The brief's example (bile-acid metabolism by Clostridia). 16 T466 features: the primary
+      # (host-made) cholate, chenodeoxycholate and taurochenodeoxycholate, and the secondary
+      # deoxycholate, which Clostridia make from cholate by 7α-dehydroxylation. Lithocholate and
+      # most glyco-/tauro-conjugates have no class in the map.
+      - "Bile acids, alcohols and derivatives"
+      # On T466 only tryptophan (2 features, one HMDB ID): the substrate microbes turn into indoles.
+      # No microbial indole (indole-3-propionate, indoxyl sulfate, ...) is among the 466 annotated.
+      - "Indoles and derivatives"
+      # On T466 one feature, "butyrate / isobutyrate" (the two are not separated): butyrate is the
+      # short-chain fatty acid made by Clostridia such as Faecalibacterium and Roseburia from
+      # fibre; isobutyrate is a branched-chain fatty acid from valine fermentation.
+      - "Straight chain fatty acids"
+    top_k_taxa: 5               # taxa reported per metabolite
+    n_repeats: 200              # shuffles of each taxon's held-out column, per fold (on PRISM the
+                                # top-5 taxa agree 90% between two shuffle seeds; 80% with 50)
+    permutation_seed: 606       # the same shuffles for every taxon, model and seed of a fold
+    # The MLP view is E1's saved T466 selection (results/selected/e1_mlp__T466.json), fit with
+    # every model seed (`seeds`) per fold. It is skipped before E1 has run, and refused whenever
+    # E1 would refuse to evaluate it (mlp.load_checked_selection: not a point of the current
+    # mlp.grid, or chosen by a search of a different grid).
+
+  classes:
+    data: [D1, D1+MGM, D1+MGM-arch]  # summary.csv `data` of the D1 models: E0/E1, E2/E3, their controls
+    null_data: D1               # whose permutation-null threshold they are all scored against
+    min_class_size: 5           # classes with fewer metabolites are pooled into `pooled_label`
+    pooled_label: Other
+    unclassified_label: Unclassified  # metabolites without a Putative.Chemical.Class

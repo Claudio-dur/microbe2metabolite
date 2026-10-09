@@ -1,0 +1,28 @@
+# Paired comparisons on the external cohort (src/m2m/experiments/compare.py).
+#   .venv/bin/python -m m2m.run configs/compare.yaml
+# Each pair: does A beat B on the same NLIBD samples? A paired bootstrap over test samples
+# (evaluation.n_bootstrap resamples, both models scored on every resample) of
+# Δ = mean over seeds of mean ρ(A) − the same for B. Reads saved predictions only.
+# Pairs must share data source and target set (same samples, metabolites and truth).
+extends: base.yaml
+experiment: compare
+
+comparisons:
+  # H1: pretraining versus the same architecture trained from scratch.
+  - {a: mgm_finetune, b: mgm_scratch, target_sets: [T466, TALL],
+     question: "H1 (E3): MGM's pretrained GPT-2 vs the same GPT-2 trained from random weights"}
+  - {a: mgm_frozen_ridge, b: mgm_random_frozen_ridge, target_sets: [T466, TALL],
+     question: "H1 (E2): frozen MGM embeddings vs a random-weights GPT-2 on the same tokens (ridge head)"}
+  - {a: mgm_frozen_mlp, b: mgm_random_frozen_mlp, target_sets: [T466, TALL],
+     question: "H1 (E2): frozen MGM embeddings vs a random-weights GPT-2 on the same tokens (MLP head)"}
+  - {a: e4c_selfsup, b: e4c_scratch, target_sets: [T466, S176],
+     question: "H1 (E4): self-supervised pretraining on 1,503 source metagenomes vs scratch"}
+  - {a: e4c_ihmp, b: e4c_scratch, target_sets: [T466, S176],
+     question: "H1 (E4): supervised pretraining on iHMP vs scratch"}
+  - {a: e4c_selfsup_ihmp, b: e4c_scratch, target_sets: [T466, S176],
+     question: "H1 (E4): self-supervised then iHMP pretraining vs scratch"}
+  # Context: is anything better than the linear baseline?
+  - {a: mlp, b: ridge, target_sets: [T466, TALL],
+     question: "Context: the E1 MLP vs ridge on the same species"}
+  - {a: mgm_finetune, b: ridge, target_sets: [T466, TALL],
+     question: "Context: fine-tuned MGM vs ridge on the D1 species"}
