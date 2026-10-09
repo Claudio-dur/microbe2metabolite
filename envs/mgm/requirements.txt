@@ -1,0 +1,69 @@
+# MGM environment (D3 in the project brief): a full lock for CPython 3.11, verified on macOS arm64.
+# Built and smoke-tested by scripts/setup_mgm_env.sh; docs/mgm_notes.md explains each pin.
+# MGM itself (data/raw/MGM, microformer-mgm 0.5.8) and this repo (m2m) are installed afterwards
+# with --no-deps, so this file is the complete dependency set of envs/mgm/.venv.
+
+# --- MGM's own pins, verbatim from data/raw/MGM/requirements.txt ---
+numpy==1.24.3
+pandas==2.0.3
+pytorch_lightning==2.0.6
+scikit_learn==1.3.1
+# setuptools provides pkg_resources, which mgm/CLI/CLI_utils.py uses to locate its resources
+setuptools==68.0.0
+torch==2.0.1
+tqdm==4.65.0
+transformers==4.33.3
+# MGM asks >=0.20.1 and transformers 4.33.3 >=0.20.3; 0.23.0 was released the same month (Sep 2023)
+accelerate==0.23.0
+
+# --- added for this project ---
+scipy==1.11.4               # needed by scikit-learn; scipy 1.11 supports numpy >=1.21.6,<1.28
+pyyaml==6.0.3               # m2m.config; same version as the main environment
+
+# --- Hugging Face transitive pins (transformers 4.33.3: tokenizers <0.14, huggingface-hub <1.0) ---
+tokenizers==0.13.3
+huggingface-hub==0.17.3
+safetensors==0.3.3
+
+# --- transitive pins matched to the 2023 stack (newer releases warn or break with it) ---
+sympy==1.12                 # torch 2.0.1
+# mpmath 1.4 raises DeprecationWarnings inside sympy 1.12 (sympy 1.13 caps mpmath <1.4)
+mpmath==1.3.0
+torchmetrics==1.0.3         # pytorch_lightning 2.0.6
+lightning-utilities==0.9.0  # pytorch_lightning 2.0.6
+
+# --- remaining transitive dependencies, as resolved on 2026-10-08 (no version-sensitive code) ---
+# torch
+filelock==4.0.12
+jinja2==3.1.6
+markupsafe==3.0.4
+networkx==3.6.1
+typing-extensions==4.16.0
+# pandas
+python-dateutil==2.9.0.post0
+pytz==2026.5
+six==1.17.0
+tzdata==2026.5
+# scikit-learn
+cloudpickle==3.1.2
+joblib==1.6.0
+threadpoolctl==3.7.0
+# transformers / huggingface-hub / accelerate
+packaging==26.3
+psutil==7.2.2
+regex==2026.9.29
+requests==2.34.2
+certifi==2026.7.22
+charset-normalizer==3.5.2
+idna==3.20
+urllib3==2.8.0
+# pytorch_lightning -> fsspec[http]
+fsspec==2026.9.0
+aiohappyeyeballs==2.7.1
+aiohttp==3.14.4
+aiosignal==1.4.0
+attrs==26.1.0
+frozenlist==1.8.0
+multidict==6.9.1
+propcache==0.5.4
+yarl==1.25.1

@@ -1,0 +1,74 @@
+# E3: MGM fine-tuned (brief section 6). MGM's pretrained GPT-2 + a pooled linear head per
+# metabolite; the last k transformer blocks are fine-tuned, the rest stays frozen.
+# H1 control (mgm_scratch, data D1+MGM-arch): the same GPT-2 architecture and MGM tokens from
+# random weights, every layer trained; folds, inner splits, pooling, targets, early stopping,
+# seeds and learning-curve subsets are shared with the fine-tuned model.
+# Two environments share the work: this one fits the target preprocessing and does all scoring;
+# envs/mgm (scripts/mgm_finetune.py) only trains and predicts. They exchange files under
+# data/processed/mgm/e3/<round>/ (see src/m2m/experiments/mgm_finetune.py).
+#
+#   python -m m2m.run configs/e3_mgm_finetune.yaml [--stage S] [--n-jobs N]
+#   stages: prepare-cv -> run-cv -> select (PRISM CV only)
+#           -> prepare-final -> run-final -> evaluate (final evaluation: they use the external
+#              cohort's MGM tokens; only evaluate opens its metabolites)
+extends: base.yaml
+experiment: e3
+
+mgm:
+  python: envs/mgm/.venv/bin/python  # MGM's pinned interpreter, relative to the repo root
+  workers: 6                         # fine-tuning processes at once (--n-jobs lowers it, never raises)
+  threads: 2                         # torch threads per process (docs/mgm_notes.md section 5:
+                                     # several 1-2 thread processes beat one many-thread process)
+  max_total_threads: 12              # workers x threads cap on this 14-core machine
+
+e3:
+  grid:                              # the brief: unfreeze the last k blocks; lr 1e-5 to 3e-5
+    n_trainable_blocks: [1, 2, 8]    # 8 = every block of MGM, token/position embeddings included
+    backbone_lr: [1.0e-5, 3.0e-5]    # AdamW lr of the pretrained layers
+  head_lr: 1.0e-3                    # the brief: a fresh head needs far larger steps than MGM's layers
+  # AdamW's default decoupled decay and the usual value for fine-tuning transformers; it is also
+  # E1's stronger grid value. MGMRegressor.param_groups applies one value to backbone and head.
+  weight_decay: 0.01
+  # The rate MGM itself uses everywhere (resid/attn/embd_pdrop = 0.1 in its config.json), so the
+  # new head is regularised like the layers it sits on.
+  head_dropout: 0.1
+  train:
+    # About 100 inner-training samples per PRISM fold: 16 gives ~7 AdamW steps per epoch (32
+    # would give 4), which matters at backbone lr 1e-5; it is also the batch size the speed
+    # benchmarks in docs/mgm_notes.md section 5 were measured with.
+    batch_size: 16
+    # A cap, not a target: early stopping should end fits. 200 epochs x 7 steps bounds the slowest
+    # fit (k = 8, every block trainable) to a few minutes.
+    max_epochs: 200
+    # About 140 steps without a better validation MSE before stopping. The inner validation split
+    # has only 25-31 samples, so its loss is noisy; a short patience would stop on noise.
+    patience: 20
+    min_delta: 0.0
+    # Same rule as base mlp.train: only learning-curve subsets (16 fit rows at n = 20) are
+    # affected; CV folds and final fits already have 7-8 steps per epoch at batch 16.
+    min_batches_per_epoch: 4
+  # The from-scratch control (mgm_scratch). Every other setting above (weight decay, head dropout,
+  # training and early stopping) is shared with the fine-tuned model.
+  scratch:
+    grid:
+      # One AdamW lr for backbone and head: nothing is pretrained. 1e-5..3e-5 only nudges trained
+      # weights and cannot train a transformer from random weights in 200 epochs; these are E1's
+      # MLP rates (3e-4, 1e-3) plus one below for a deeper network.
+      lr: [1.0e-4, 3.0e-4, 1.0e-3]
+    # Every block, token/position embedding and the final LayerNorm train (all 8 of MGM's blocks);
+    # envs/mgm refuses a random network with frozen blocks.
+    n_trainable_blocks: 8
+  # Pooling is not re-tuned here: for each target set it is the pooling of whichever E2 selection
+  # of that target set (ridge or MLP head on frozen MGM embeddings) has the higher PRISM CV mean
+  # rho. The scratch control uses the same pooling as the fine-tuned model.
+  pooling_from:
+    selections: [e2_mgm_frozen_ridge, e2_mgm_frozen_mlp]
+  tokens:                            # written by scripts/mgm_embed.py under data/processed/mgm/
+    train: PRISM_tokens.npz
+    test: NLIBD_tokens.npz           # the final round only; dry runs use PRISM's pseudo-test rows
+  # For 0 < k < 8, run the frozen prefix once per fit and train only the last k blocks + head on
+  # its cached output (3-4x faster per step). Exact: frozen layers are always in eval mode.
+  # Never used by the scratch control (nothing is frozen).
+  prefix_cache: true
+  prefix_cache_tol: 1.0e-5           # max |cached - full model| allowed; checked in every fit
+  null_data: D1                      # which permutation-null threshold (E0) the summary uses

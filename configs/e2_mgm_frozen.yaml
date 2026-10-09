@@ -1,0 +1,25 @@
+# E2: frozen MGM embeddings + a ridge head and a small MLP head (brief section 6).
+#   .venv/bin/python -m m2m.run configs/e2_mgm_frozen.yaml [--stage S[,S...]]
+#   stages: prepare -> select (model selection, PRISM only)
+#           -> embed-external -> external -> curve (final evaluation: they open NLIBD)
+# Pooling (mean over real tokens vs the last <eos> token) is selected by PRISM CV with the head.
+# H1 control: the same frozen GPT-2 architecture with random weights (transformers' GPT-2
+# initialisation, seeded) embeds the same MGM tokens and gets the same heads, poolings, CV and
+# external protocol: models mgm_random_frozen_ridge / mgm_random_frozen_mlp, data D1+MGM-arch.
+# Its networks come from the base `seeds`: CV selects on init seed 0 (the CV's model seed) and the
+# external fit of model seed s uses init seed s, so its SD over seeds includes the initialisation.
+extends: base.yaml
+experiment: e2
+
+mgm:                                    # scripts/mgm_embed.py, run in the pinned MGM environment
+  python: envs/mgm/.venv/bin/python     # paths are relative to the repository root
+  # MGM's weights and config.json; the random-weight control reads only the config.json
+  model_dir: data/raw/MGM/mgm/resources/general_model
+  max_len: 512                          # MGM's context; D1 samples need at most 48 tokens
+  batch_size: 64                        # samples per forward pass (memory only, same embeddings)
+  threads: 4                            # torch threads in envs/mgm (torch 2.0.1 sets them once)
+
+head:                                   # regressors on the 256-d embeddings, z-scored on training rows
+  mlp:
+    hidden: [128]                       # one small layer; lr x dropout x weight_decay = base mlp.grid,
+                                        # training settings (batch, epochs, patience) = base mlp.train
