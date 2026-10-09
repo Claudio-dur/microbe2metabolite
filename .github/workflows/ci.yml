@@ -1,7 +1,9 @@
 name: ci
 
 # Lint + unit tests on synthetic data. Needs no data download and no MGM environment
-# (MGM-specific tests skip themselves when `transformers` is not installed).
+# (MGM-specific tests skip themselves: the GPT-2 tests when `transformers` is not installed,
+# the envs/mgm tests when envs/mgm/.venv is absent; the real-MGM test is opt-in via
+# M2M_TEST_MGM_ENV=1).
 on:
   push:
   pull_request:

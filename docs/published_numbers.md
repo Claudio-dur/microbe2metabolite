@@ -102,7 +102,7 @@ journal numbers.
 | MelonnPan (as run by the mNODE authors) | Quantile-normal ("rank") transform of normalised abundances | Arcsine square root of normalised profiles | Not stated | — | mNODE SI §1: *"It applies the rank-transformation to the normalized microbial abundances … Normalized metabolite profiles are arcsine square root transformed"* |
 | **MiMeNet, own paper / code** | Raw relative abundance (`run.sh`: `-micro_norm None`) | CLR(x + 1) per sample, across the 8,847 features that pass the filter | Drop features present in ≤ 10% of PRISM samples. On PRISM this drops 1 (unannotated) of the 8,848 metabolite features and 37 of the 200 species | z-score (`StandardScaler` fit on training data) | Paper Methods: *"Any input or output feature that is present in less than 10% of samples was removed … A pseudocount of 1 was added … The only exception was for the IBD (PRISM) and IBD (External) microbe values, which were obtained in relative abundance (RA)."*; `MiMeNet_train.py` L192–208 (filter), L228–256 (transforms), L348–354 and L987–992 (z-score) |
 | **MelonnPan, own paper** | ~1M UniRef90 gene families (HUMAnN2) → 814 after filtering, quantile-normal transform | Relative abundance, arcsine square root; 2,818 features after filtering | > 0.01% in ≥ 10% of samples | — | *"both gene families and metabolites, of very low relative abundance and prevalence (<0.01% in ≥10% of samples) were removed, leaving 2818 metabolites and 814 gene families for final modelling"* |
-| **Ours** | Re-close; 151 of 200 species pass > 1e-4 in ≥ 10% of PRISM; CLR with a per-sample half-minimum pseudocount | log10(x + 1); targets zero in > 50% of PRISM dropped: **T466 → 427** annotated, **TALL → 6,948** features | Fit on PRISM | z-score (PRISM statistics) | `configs/base.yaml`. Counts computed from full PRISM, and reproduced by fitting the project's own `m2m.preprocess` classes. The pipeline's results record should still state them |
+| **Ours** | Re-close; 151 of 200 species pass > 1e-4 in ≥ 10% of PRISM; CLR with a per-sample half-minimum pseudocount | log10(x + 1); targets zero in > 50% of PRISM dropped: **T466 → 427** annotated, **TALL → 6,948** features | Fit on PRISM | z-score (PRISM statistics) | `configs/base.yaml`. Counts computed from full PRISM, and reproduced by fitting the project's own `m2m.preprocess` classes. `results/summary.csv` records the same counts (`n_input_features`, `n_features_mean`) |
 
 **Why the target scale matters for Spearman.**
 
@@ -152,7 +152,8 @@ Our protocol:
 - targets zero in > 50% of PRISM dropped (T466 = 427 annotated, TALL = 6,948);
 - Spearman per metabolite on NLIBD, NaN → 0;
 - mean over 5 seeds;
-- NLIBD never used before the final evaluation.
+- NLIBD never trained, tuned or early-stopped on, and opened before the final evaluation only by the
+  logged section-3 data checks, which fit nothing (`results/external_access_log.csv`).
 
 | Reference number | Like-for-like with ours? | What differs |
 |---|---|---|
@@ -194,8 +195,9 @@ early stopping or its single-run reporting, so it would remain context.
 > 2. **Metabolite set.** mNODE scores all 466 annotated metabolites and trains on all 8,848 features.
 >    Our T466 keeps the 427 annotated metabolites that are non-zero in at least half of PRISM.
 > 3. **Early stopping.** mNODE's final model stops training based on its mean ρ on the NLIBD test
->    cohort itself, so the published values are not clean held-out estimates. We never use NLIBD
->    before the final evaluation.
+>    cohort itself, so the published values are not clean held-out estimates. We never train, tune
+>    or early-stop on NLIBD; before the final evaluation, only the logged data checks (which fit
+>    nothing) open it.
 > 4. **Repeats.** Each published value is a single training run. Across the authors' 50 re-runs
 >    (Extended Data Fig. 8), the median is about 0.26 / 0.61 / 57.5. The published mean ρ and
 >    N(ρ > 0.5) match the best of those re-runs. We report the mean over 5 seeds.

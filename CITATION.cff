@@ -18,6 +18,11 @@ references:
     authors:
       - family-names: "Franzosa"
         given-names: "Eric A."
+      - family-names: "Sirota-Madi"
+        given-names: "Alexandra"
+      - family-names: "Avila-Pacheco"
+        given-names: "Julian"
+      - name: "et al."
     journal: "Nature Microbiology"
     year: 2019
     doi: "10.1038/s41564-018-0306-4"
@@ -26,20 +31,55 @@ references:
     authors:
       - family-names: "Reiman"
         given-names: "Derek"
+      - family-names: "Layden"
+        given-names: "Brian T."
+      - family-names: "Dai"
+        given-names: "Yang"
     journal: "PLOS Computational Biology"
     year: 2021
+    doi: "10.1371/journal.pcbi.1009021"
   - type: article
     title: "The gut microbiome-metabolome dataset collection: a curated resource for integrative meta-analysis"
     authors:
       - family-names: "Muller"
         given-names: "Efrat"
+      - family-names: "Algavi"
+        given-names: "Yadid M."
+      - family-names: "Borenstein"
+        given-names: "Elhanan"
     journal: "npj Biofilms and Microbiomes"
     year: 2022
     doi: "10.1038/s41522-022-00345-5"
+  - type: article
+    title: "Multi-omics of the gut microbial ecosystem in inflammatory bowel diseases"
+    authors:
+      - family-names: "Lloyd-Price"
+        given-names: "Jason"
+      - family-names: "Arze"
+        given-names: "Cesar"
+      - family-names: "Ananthakrishnan"
+        given-names: "Ashwin N."
+      - name: "et al."
+    journal: "Nature"
+    year: 2019
+    doi: "10.1038/s41586-019-1237-9"
   - type: article
     title: "MGM as a large-scale pretrained foundation model for microbiome analyses in diverse contexts"
     authors:
       - family-names: "Zhang"
         given-names: "Haohong"
+      - family-names: "Zhang"
+        given-names: "Yuli"
+      - family-names: "Kang"
+        given-names: "Zixin"
+      - family-names: "Xiong"
+        given-names: "Jiayun"
+      - family-names: "Yang"
+        given-names: "Ronghua"
+      - family-names: "Ning"
+        given-names: "Kang"
     journal: "Advanced Science"
+    year: 2026
+    volume: 13
+    start: "e13333"
     doi: "10.1002/advs.202513333"
